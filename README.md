@@ -57,5 +57,46 @@ pastel-music-demo/
 - Bước 2: Mở file index.html bằng trình duyệt (Chrome, Edge, Firefox đều được)
 - Bước 3: Xem demo 🌸
 
-  ---
-  Cảm ơn thầy đã xem file hướng dẫn và demo ạ!
+2️⃣ Chạy online bằng GitHub Pages
+
+- Vào Settings → Pages trong repo của bạn
+- Chọn:
+Source: Deploy from a branch
+Branch: main
+Folder: / (root)
+Nhấn Save, đợi vài giây
+- Truy cập link:
+👉 https://<tên-user>.github.io/pastel-music-demo/
+
+---
+
+## 🧠 Công nghệ sử dụng
+
+- HTML5 — cấu trúc nội dung
+- CSS3 (Pastel theme) — giao diện nhẹ nhàng, tông trắng-hồng-xanh
+- JavaScript (Vanilla) — xử lý dữ liệu, điều hướng, audio player
+- Local Mock Data — dữ liệu tĩnh trong file script.js
+- HLS.js (tuỳ chọn) — mô phỏng streaming audio
+
+---
+
+💬 Ghi chú
+
+Đây là prototype cho mục đích học tập và trình bày ý tưởng.
+Dữ liệu chỉ mang tính minh họa, không phục vụ thương mại.
+Có thể mở rộng thêm chức năng như:
+- Tìm kiếm bài hát theo tên
+- Playlist động (thêm/xóa bài hát)
+- Upload nhạc từ Admin
+- Kết nối Firebase hoặc JSON server để lưu trữ dữ liệu thực tế.
+
+--- 
+
+🎗 Tác giả
+
+Nguyễn Ngọc Gia Hân 🔮
+
+Sinh viên ngành Công nghệ Đa phương tiện 👩‍💻
+Prototype được phát triển cùng hướng dẫn của ChatGPT 🤖
+
+Cảm ơn thầy đã dành thời gian xem Prototype hướng dẫn và trải nghiệm qua Demo 🎊

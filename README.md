@@ -56,11 +56,11 @@ pastel-music-demo/
 - Bước 1: Tải toàn bộ thư mục dự án  
   *(hoặc clone bằng Git nếu có repo)*  
   ```bash
-  git clone https://github.com/<tên-user>/pastel-music-demo.git
+  git clone file:///F:/STUDY/C_C++/NMCNPM_MySQL/Midterm%20Test/music-demo-final.html
 - Bước 2: Mở file index.html bằng trình duyệt (Chrome, Edge, Firefox đều được)
 - Bước 3: Xem demo 🌸
 
-2️⃣ Chạy online bằng GitHub Pages
+### 2️⃣ Chạy online bằng GitHub Pages
 
 - Vào Settings → Pages trong repo của bạn
 - Chọn:
@@ -69,7 +69,7 @@ Branch: main
 Folder: / (root)
 Nhấn Save, đợi vài giây
 - Truy cập link:
-👉 https://<tên-user>.github.io/pastel-music-demo/
+👉 [Demo Music Streaming Web App của Hân](https://hanari05.github.io/music-streaming-spec/)
 
 ---
 

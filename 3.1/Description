@@ -1,7 +1,13 @@
-| Mục                   | Nội dung                                                                                                                                                                                            |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Brief Description** | Người dùng có thể đăng ký tài khoản mới hoặc đăng nhập vào hệ thống bằng email, OTP, hoặc tài khoản mạng xã hội (Google/Facebook).                                                                  |
-| **Pre-condition**     | Người dùng truy cập trang chủ ứng dụng.                                                                                                                                                             |
-| **Post-condition**    | Hệ thống xác thực thành công và người dùng được chuyển đến giao diện chính.                                                                                                                         |
-| **Basic Flow**        | 1. Người dùng chọn “Đăng nhập/Đăng ký”.<br>2. Nhập thông tin hoặc chọn phương thức đăng nhập (email/OTP/social).<br>3. Hệ thống xác thực thông tin.<br>4. Đăng nhập thành công, hiển thị trang chủ. |
-| **Alternate Flow**    | 2a. Nếu thông tin không hợp lệ → hiển thị lỗi.<br>3a. Nếu người dùng chưa có tài khoản → chuyển sang form đăng ký.                                                                                  |
+* Use Case 1: Đăng nhập/Đăng ký
+
+- Brief Description: Người dùng có thể đăng ký tài khoản mới hoặc đăng nhập vào hệ thống bằng email, OTP, hoặc tài khoản mạng xã hội (Google/Facebook).
+- Pre-condition: Người dùng truy cập trang chủ ứng dụng.
+- Post-condition: Hệ thống xác thực thành công và người dùng được chuyển đến giao diện chính.
+- Basic Flow:
+1. Người dùng chọn “Đăng nhập/Đăng ký”.
+2. Nhập thông tin hoặc chọn phương thức đăng nhập (email/OTP/social).
+3. Hệ thống xác thực thông tin.
+4. Đăng nhập thành công, hiển thị trang chủ.
+- Alternate Flow: 
+2a. Nếu thông tin không hợp lệ → hiển thị lỗi.
+3a. Nếu người dùng chưa có tài khoản → chuyển sang form đăng ký.

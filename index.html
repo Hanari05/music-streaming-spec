@@ -4,50 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pastel Music App – BLACKPINK | YOASOBI | K/DA</title>
-<style>
-:root{
-  --pink:#FCDCE1;--lav:#F0D9EF;--yellow:#FFE6BB;
-  --lime:#E9ECCE;--mint:#CDE9DC;--baby:#C4DFE5;
-  --text:#333;--radius:16px;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",sans-serif;transition:all .3s ease;}
-body{background:var(--lav);color:var(--text);overflow-x:hidden;}
-header{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(255,255,255,.75);
-  backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.05);}
-header h1{font-size:20px;font-weight:600;}
-nav a{margin:0 6px;padding:8px 14px;border-radius:var(--radius);text-decoration:none;color:var(--text);}
-nav a:hover,nav a.active{background:rgba(0,0,0,.05);}
-section{display:none;min-height:calc(100vh - 140px);padding:100px 10vw 120px;
-  opacity:0;transform:translateY(10px);}
-section.active{display:block;animation:fade .5s ease forwards;}
-@keyframes fade{to{opacity:1;transform:translateY(0)}}
-.card{background:rgba(255,255,255,.6);border-radius:var(--radius);padding:24px;margin-bottom:20px;
-  box-shadow:0 4px 12px rgba(0,0,0,.05);}
-h2{margin-bottom:12px;}
-.album{background:var(--baby);border-radius:var(--radius);padding:16px;cursor:pointer;text-align:center;}
-.album:hover{transform:translateY(-4px);}
-.album img{width:100%;border-radius:var(--radius);}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
-.artist-card{background:rgba(255,255,255,.6);padding:16px;border-radius:var(--radius);cursor:pointer;text-align:center;}
-.artist-card:hover{background:rgba(255,255,255,.9);}
-.artist-card img{width:100%;border-radius:var(--radius);}
-.search-bar{display:flex;gap:8px;margin-bottom:16px;}
-input[type=text]{flex:1;padding:10px 14px;border:1px solid #ddd;border-radius:var(--radius);}
-button{border:0;border-radius:var(--radius);padding:10px 16px;font-size:14px;cursor:pointer;}
-.btn{background:var(--mint);}
-button:hover{opacity:.85;}
-.track-item{background:var(--lime);padding:12px;border-radius:var(--radius);margin-bottom:8px;}
-.lyrics{background:var(--pink);padding:16px;border-radius:var(--radius);margin-top:16px;white-space:pre-wrap;}
-/* Mini player */
-#playerBar{position:fixed;bottom:0;left:0;right:0;height:76px;background:rgba(255,255,255,.8);
-  backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;border-top:1px solid rgba(0,0,0,.1);z-index:99;}
-#playerInfo{display:flex;align-items:center;gap:12px;}
-#playerInfo img{width:56px;height:56px;border-radius:var(--radius);}
-#controls button{margin:0 6px;}
-footer{text-align:center;padding:20px;color:#666;}
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header>

@@ -1,0 +1,107 @@
+📍 Use Case 1: Đăng nhập/Đăng ký
+
+- Brief Description: Người dùng có thể đăng ký tài khoản mới hoặc đăng nhập vào hệ thống bằng email, OTP, hoặc tài khoản mạng xã hội (Google/Facebook).
+- Pre-condition: Người dùng truy cập trang chủ ứng dụng.
+- Post-condition: Hệ thống xác thực thành công và người dùng được chuyển đến giao diện chính.
+- Basic Flow:
+1. Người dùng chọn “Đăng nhập/Đăng ký”.
+2. Nhập thông tin hoặc chọn phương thức đăng nhập (email/OTP/social).
+3. Hệ thống xác thực thông tin.
+4. Đăng nhập thành công, hiển thị trang chủ.
+- Alternate Flow: 
+2a. Nếu thông tin không hợp lệ → hiển thị lỗi.
+3a. Nếu người dùng chưa có tài khoản → chuyển sang form đăng ký.
+
+
+📍 Use Case 2: Quản lý Playlist
+- Brief Description: Người dùng tạo, chỉnh sửa, xoá, thêm hoặc xoá bài hát trong playlist cá nhân. Có thể chia sẻ playlist công khai hoặc riêng tư.
+- Pre-condition: Người dùng đã đăng nhập.
+- Post-condition: Playlist được lưu hoặc cập nhật thành công trong hệ thống.
+- Basic Flow:
+1. Người dùng chọn “Playlist của tôi”.
+2. Chọn “Tạo mới / Sửa / Xoá playlist”.
+3. Hệ thống hiển thị giao diện thao tác.
+4. Người dùng lưu thay đổi.
+5. Hệ thống cập nhật cơ sở dữ liệu
+- Alternate Flow: 
+3a. Nếu thao tác lỗi (ví dụ: playlist trùng tên) → thông báo lỗi.
+4a. Người dùng chọn chia sẻ (public/private) → hệ thống cập nhật quyền truy cập.
+
+
+📍 Use Case 3: Phát nhạc
+- Brief Description: Người dùng chọn bài hát hoặc playlist để nghe. Hệ thống phát nhạc thông qua Audio CDN/Player.
+- Pre-condition: Người dùng đã đăng nhập hoặc truy cập ở chế độ khách; bài hát tồn tại trong hệ thống.
+- Post-condition: Bài hát được phát thành công; lượt nghe được ghi nhận.
+- Basic Flow:
+1. Người dùng chọn bài hát hoặc playlist.
+2. Hệ thống gửi yêu cầu phát nhạc đến CDN/Player.
+3. Nhạc bắt đầu phát, hiển thị ảnh bìa, metadata, lời bài hát.
+4. Người dùng có thể điều khiển (Play/Pause/Next/Previous/Seek/Shuffle/Repeat).
+- Alternate Flow: 
+2a. Nếu lỗi kết nối mạng → thông báo không thể phát nhạc.
+3a. Nếu file âm thanh bị thiếu → hiển thị lỗi “bài hát không khả dụng”.
+
+
+📍 Use Case 4: Tìm kiếm nội dung
+- Brief Description: Người dùng tìm kiếm bài hát, nghệ sĩ, album hoặc playlist bằng từ khóa.
+- Pre-condition: Người dùng truy cập giao diện chính của ứng dụng.
+- Post-condition: Danh sách kết quả hiển thị tương ứng với truy vấn.
+- Basic Flow:
+1. Người dùng nhập từ khóa vào ô tìm kiếm.
+2. Hệ thống xử lý và tìm kiếm trong cơ sở dữ liệu.
+3. Hiển thị danh sách kết quả phù hợp (bài hát, nghệ sĩ, album…).
+4. Người dùng chọn một kết quả để xem hoặc nghe.
+- Alternate Flow: 
+3a. Nếu không có kết quả → hiển thị “Không tìm thấy nội dung phù hợp”.
+4a. Nếu truy vấn lỗi → hiển thị thông báo.
+
+
+📍 Use Case 5: Theo dõi nghệ sĩ / album
+- Brief Description: Người dùng có thể nhấn theo dõi nghệ sĩ hoặc album để nhận thông báo khi có nội dung mới.
+- Pre-condition: Người dùng đã đăng nhập.
+- Post-condition: Hệ thống ghi nhận mối quan hệ theo dõi vào cơ sở dữ liệu.
+- Basic Flow:
+1. Người dùng mở trang nghệ sĩ hoặc album.
+2. Nhấn nút “Theo dõi”.
+3. Hệ thống ghi nhận hành động theo dõi và cập nhật dữ liệu.
+- Alternate Flow: 
+2a. Nếu người dùng đã theo dõi → hiển thị tùy chọn “Bỏ theo dõi”.
+2b. Nếu chưa đăng nhập → yêu cầu đăng nhập trước.
+
+
+📍 Use Case 6: Xem lịch sử nghe
+- Brief Description: Người dùng xem danh sách bài hát đã nghe và top 10 bài hát nghe gần đây nhất.
+- Pre-condition: Người dùng đã đăng nhập và có lịch sử nghe.
+- Post-condition: Lịch sử nghe được hiển thị, cho phép người dùng chọn phát lại hoặc thêm vào playlist.
+- Basic Flow:
+1. Người dùng chọn “Lịch sử nghe”.
+2. Hệ thống truy xuất dữ liệu từ lịch sử phát nhạc.
+3. Hiển thị danh sách bài hát gần đây và thống kê top 10.
+- Alternate Flow: 
+3a. Nếu không có lịch sử → hiển thị “Chưa có bài hát nào được nghe gần đây”.
+
+
+📍 Use Case 7: Quản lý nội dung (Admin)
+- Brief Description: Quản trị viên có thể thêm, sửa, xoá dữ liệu về nghệ sĩ, bài hát, album, thể loại.
+- Pre-condition: Admin đã đăng nhập vào hệ thống quản trị.
+- Post-condition: CSDL âm nhạc được cập nhật chính xác.
+- Basic Flow:
+1. Admin chọn loại dữ liệu muốn quản lý (nghệ sĩ, bài hát, album, thể loại).
+2. Thực hiện các thao tác thêm/sửa/xóa.
+3. Hệ thống lưu thay đổi và hiển thị thông báo thành công.
+- Alternate Flow: 
+2a. Nếu dữ liệu không hợp lệ (ví dụ: trùng tên) → thông báo lỗi.
+3a. Nếu thao tác lỗi hệ thống → rollback và thông báo cho Admin.
+
+
+📍 Use Case 8: Ghi nhận lượt nghe (Scrobble)
+- Brief Description: Khi người dùng phát nhạc, hệ thống ghi lại thông tin lượt nghe để thống kê và đề xuất nhạc liên quan.
+- Pre-condition: Bài hát được phát qua hệ thống CDN/Player.
+- Post-condition: Lượt nghe được lưu trong CSDL cùng thời gian và ID người dùng.
+- Basic Flow:
+1. Khi người dùng phát nhạc, hệ thống gửi tín hiệu đến CDN.
+2. CDN phản hồi và ghi nhận lượt nghe vào cơ sở dữ liệu.
+3. Thống kê được cập nhật.
+- Alternate Flow: 
+2a. Nếu lỗi mạng → lượt nghe không được ghi nhận (ghi log để retry sau).
+

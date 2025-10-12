@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pastel Music App – BLACKPINK | YOASOBI | K/DA</title>
+<style>
+:root{
+  --pink:#FCDCE1;--lav:#F0D9EF;--yellow:#FFE6BB;
+  --lime:#E9ECCE;--mint:#CDE9DC;--baby:#C4DFE5;
+  --text:#333;--radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",sans-serif;transition:all .3s ease;}
+body{background:var(--lav);color:var(--text);overflow-x:hidden;}
+header{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+header h1{font-size:20px;font-weight:600;}
+nav a{margin:0 6px;padding:8px 14px;border-radius:var(--radius);text-decoration:none;color:var(--text);}
+nav a:hover,nav a.active{background:rgba(0,0,0,.05);}
+section{display:none;min-height:calc(100vh - 140px);padding:100px 10vw 120px;
+  opacity:0;transform:translateY(10px);}
+section.active{display:block;animation:fade .5s ease forwards;}
+@keyframes fade{to{opacity:1;transform:translateY(0)}}
+.card{background:rgba(255,255,255,.6);border-radius:var(--radius);padding:24px;margin-bottom:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);}
+h2{margin-bottom:12px;}
+.album{background:var(--baby);border-radius:var(--radius);padding:16px;cursor:pointer;text-align:center;}
+.album:hover{transform:translateY(-4px);}
+.album img{width:100%;border-radius:var(--radius);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+.artist-card{background:rgba(255,255,255,.6);padding:16px;border-radius:var(--radius);cursor:pointer;text-align:center;}
+.artist-card:hover{background:rgba(255,255,255,.9);}
+.artist-card img{width:100%;border-radius:var(--radius);}
+.search-bar{display:flex;gap:8px;margin-bottom:16px;}
+input[type=text]{flex:1;padding:10px 14px;border:1px solid #ddd;border-radius:var(--radius);}
+button{border:0;border-radius:var(--radius);padding:10px 16px;font-size:14px;cursor:pointer;}
+.btn{background:var(--mint);}
+button:hover{opacity:.85;}
+.track-item{background:var(--lime);padding:12px;border-radius:var(--radius);margin-bottom:8px;}
+.lyrics{background:var(--pink);padding:16px;border-radius:var(--radius);margin-top:16px;white-space:pre-wrap;}
+/* Mini player */
+#playerBar{position:fixed;bottom:0;left:0;right:0;height:76px;background:rgba(255,255,255,.8);
+  backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;border-top:1px solid rgba(0,0,0,.1);z-index:99;}
+#playerInfo{display:flex;align-items:center;gap:12px;}
+#playerInfo img{width:56px;height:56px;border-radius:var(--radius);}
+#controls button{margin:0 6px;}
+footer{text-align:center;padding:20px;color:#666;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎶 Pastel Music</h1>
+  <nav>
+    <a href="#home" class="active">Home</a>
+    <a href="#search">Search</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#artist">Artists</a>
+    <a href="#admin">Admin</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="active" style="background:var(--lav);">
+  <h2>Khám phá Nghệ sĩ</h2>
+  <div class="grid">
+    <div class="artist-card" onclick="showArtist('BLACKPINK')">
+      <img src="https://i.imgur.com/v2vYFZd.jpeg" alt="BLACKPINK">
+      <h3>BLACKPINK</h3>
+    </div>
+    <div class="artist-card" onclick="showArtist('YOASOBI')">
+      <img src="https://i.imgur.com/7y4Z8xC.jpeg" alt="YOASOBI">
+      <h3>YOASOBI</h3>
+    </div>
+    <div class="artist-card" onclick="showArtist('KDA')">
+      <img src="https://i.imgur.com/VJ8Zg0Y.jpeg" alt="K/DA">
+      <h3>K/DA</h3>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section id="search" style="background:var(--mint);">
+  <h2>Tìm kiếm bài hát</h2>
+  <div class="search-bar">
+    <input type="text" id="q" placeholder="Nhập tên bài hát...">
+    <button class="btn" onclick="searchSong()">Tìm</button>
+  </div>
+  <div id="results"></div>
+</section>
+
+<!-- PLAYLIST -->
+<section id="playlist" style="background:var(--yellow);">
+  <h2>Playlist: Chill Pastel</h2>
+  <div class="track-item" onclick="playSong('Pink Venom','BLACKPINK','https://i.imgur.com/v2vYFZd.jpeg')">🎵 Pink Venom – BLACKPINK</div>
+  <div class="track-item" onclick="playSong('Idol','YOASOBI','https://i.imgur.com/7y4Z8xC.jpeg')">🎵 Idol – YOASOBI</div>
+  <div class="track-item" onclick="playSong('MORE','K/DA','https://i.imgur.com/VJ8Zg0Y.jpeg')">🎵 MORE – K/DA</div>
+</section>
+
+<!-- ARTIST -->
+<section id="artist" style="background:var(--baby);">
+  <div id="artistContent">
+    <h2>Chọn nghệ sĩ để xem chi tiết</h2>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" style="background:var(--pink);">
+  <h2>Admin CRUD (Mock)</h2>
+  <form onsubmit="event.preventDefault();alert('Đã lưu (mock)');" style="max-width:400px;">
+    <input placeholder="Tên bài hát">
+    <input placeholder="Nghệ sĩ">
+    <textarea placeholder="Mô tả..."></textarea>
+    <select><option>Thể loại</option><option>Pop</option><option>Rock</option><option>EDM</option></select>
+    <button class="btn">Lưu</button>
+  </form>
+</section>
+
+<!-- MINI PLAYER -->
+<div id="playerBar">
+  <div id="playerInfo">
+    <img src="https://via.placeholder.com/56" id="cover">
+    <div>
+      <div id="trackName">Chưa phát bài nào</div>
+      <div id="artistName" style="font-size:13px;color:#666;">—</div>
+    </div>
+  </div>
+  <div id="controls">
+    <button onclick="prevSong()">⏮️</button>
+    <button onclick="togglePlay()">▶️</button>
+    <button onclick="nextSong()">⏭️</button>
+  </div>
+</div>
+
+<footer>© 2025 Pastel Music Prototype</footer>
+
+<script>
+const links=document.querySelectorAll('nav a');
+function showSection(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  links.forEach(a=>a.classList.remove('active'));
+  document.querySelector(`nav a[href='#${id}']`)?.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+links.forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();showSection(a.getAttribute('href').replace('#',''));
+}));
+
+// dữ liệu nghệ sĩ
+const artists={
+  BLACKPINK:{
+    color:"var(--pink)",
+    albums:[
+      {title:"Born Pink (2022)",tracks:["Pink Venom","Shut Down"]},
+      {title:"The Album (2020)",tracks:["Lovesick Girls"]}
+    ]
+  },
+  YOASOBI:{
+    color:"var(--yellow)",
+    albums:[
+      {title:"THE BOOK (2021)",tracks:["Yoru ni Kakeru","Gunjou"]},
+      {title:"Idol (2023)",tracks:["Idol"]}
+    ]
+  },
+  KDA:{
+    color:"var(--baby)",
+    albums:[
+      {title:"K/DA – ALL OUT (2020)",tracks:["POP/STARS","MORE","DRUM GO DUM"]}
+    ]
+  }
+};
+
+function showArtist(name){
+  showSection('artist');
+  const a=artists[name];
+  let html=`<h2>${name}</h2>`;
+  html+=`<div class="card" style="background:${a.color}"><h3>Albums</h3>`;
+  a.albums.forEach(al=>{
+    html+=`<div style="margin-bottom:8px;"><strong>${al.title}</strong><ul>`;
+    al.tracks.forEach(t=>{
+      html+=`<li style="cursor:pointer;margin-left:16px;" onclick="playSong('${t}','${name}','')">${t}</li>`;
+    });
+    html+=`</ul></div>`;
+  });
+  html+=`</div>`;
+  document.getElementById('artistContent').innerHTML=html;
+}
+
+function searchSong(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const r=document.getElementById('results');
+  if(!q){r.innerHTML='<p>Nhập từ khóa để tìm kiếm.</p>';return;}
+  let found=[];
+  for(let k in artists){
+    artists[k].albums.forEach(al=>{
+      al.tracks.forEach(t=>{
+        if(t.toLowerCase().includes(q)) found.push({t,k});
+      });
+    });
+  }
+  if(found.length==0) r.innerHTML='<p>Không tìm thấy.</p>';
+  else r.innerHTML=found.map(x=>`<div class='track-item' onclick="playSong('${x.t}','${x.k}','')">🎵 ${x.t} – ${x.k}</div>`).join('');
+}
+
+// Mini-player
+let current={title:null,artist:null,cover:null};
+function playSong(title,artist,cover){
+  current={title,artist,cover};
+  document.getElementById('trackName').textContent=title;
+  document.getElementById('artistName').textContent=artist;
+  if(cover) document.getElementById('cover').src=cover;
+  document.querySelector('#controls button:nth-child(2)').textContent='⏸️';
+}
+function togglePlay(){
+  const b=document.querySelector('#controls button:nth-child(2)');
+  b.textContent=b.textContent==='▶️'?'⏸️':'▶️';
+}
+function prevSong(){alert('Bài trước (mock)');}
+function nextSong(){alert('Bài tiếp (mock)');}
+</script>
+</body>
+</html>

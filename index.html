@@ -1,11 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url='./3.7 Demo mô phỏng/index.html'" />
-  <title>Redirecting...</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>🌸 Pastel Music Demo</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>Nếu bạn không được tự động chuyển, <a href="./3.7 Demo mô phỏng/index.html">nhấn vào đây</a>.</p>
+<header>🌸 Pastel Music Demo</header>
+
+<nav>
+  <button onclick="showView('home')">Trang chủ</button>
+  <button onclick="showView('tracks')">Tracks</button>
+  <button onclick="showView('search')">Tìm kiếm</button>
+  <button onclick="showView('playlists')">Playlists</button>
+  <button onclick="showView('artists')">Nghệ sĩ</button>
+  <button onclick="showView('history')">Lịch sử</button>
+  <button onclick="showView('admin')">Admin</button>
+</nav>
+
+<main>
+  <section id="home" class="view">
+    <h2>Khám phá Pastel Music</h2>
+    <p>🎵 Không gian âm nhạc pastel – dễ thương, nhẹ nhàng và cảm xúc. Chào mừng bạn đến với trang Prototype Web nhạc của Hân. Cùng chill với giai điệu yêu thích của bạn nhé!</p>
+  </section>
+
+  <section id="tracks" class="view hidden">
+    <h2>🎧 Danh sách bài hát</h2>
+    <div id="track-list" class="grid"></div>
+  </section>
+
+  <section id="artists" class="view hidden">
+    <h2>Nghệ sĩ nổi bật</h2>
+    <div id="artist-list" class="grid"></div>
+    <div id="artist-detail" class="hidden">
+      <h3 id="artist-name"></h3>
+      <ul id="artist-tracks" class="track-list"></ul>
+    </div>
+
+    <h3 style="margin-top:2em;">Albums</h3>
+    <div id="album-list" class="grid"></div>
+    <div id="album-detail" class="hidden">
+      <h3 id="album-title"></h3>
+      <ul id="album-tracks" class="track-list"></ul>
+    </div>
+  </section>
+
+  <section id="playlists" class="view hidden">
+    <h2>Playlists</h2>
+    <div id="playlist-list" class="grid"></div>
+    <div id="playlist-detail" class="hidden">
+      <h3 id="playlist-title"></h3>
+      <ul id="playlist-tracks" class="track-list"></ul>
+    </div>
+  </section>
+
+  <section id="history" class="view hidden">
+    <h2>Lịch sử nghe</h2>
+    <ul id="history-list"></ul>
+  </section>
+
+  <section id="admin" class="view hidden">
+    <h2>🎛️ Khu vực Admin (CRUD nội dung)</h2>
+    <table class="admin-table">
+      <thead><tr><th>ID</th><th>Tên bài hát</th><th>Nghệ sĩ</th><th>Thao tác</th></tr></thead>
+      <tbody id="admin-track-body"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer id="player"><audio id="audio" controls style="width:100%;"></audio></footer>
+
+<script>
+const seed = {
+  artists: [
+    { id:1, name:"BLACKPINK", img:"https://i.imgur.com/xwA4Pnh.jpg" },
+    { id:2, name:"IU", img:"https://i.imgur.com/vnygukZ.jpg" },
+    { id:3, name:"YOASOBI", img:"https://i.imgur.com/FxgU1mD.jpg" },
+    { id:4, name:"Taylor Swift", img:"https://i.imgur.com/av6zMSR.jpg" },
+    { id:5, name:"Sơn Tùng M-TP", img:"https://i.imgur.com/ujcY5El.jpg" },
+    { id:6, name:"Đen Vâu", img:"https://i.imgur.com/j5iSRPQ.jpg" },
+    { id:7, name:"NewJeans", img:"https://i.imgur.com/5f3upmX.jpg" },
+    { id:8, name:"Vũ", img:"https://i.imgur.com/9ulvDnc.jpg" },
+    { id:9, name:"Min", img:"https://i.imgur.com/znjQDRB.jpg" },
+    { id:10, name:"Ariana Grande", img:"https://i.imgur.com/NZrYdLb.jpg" }
+  ],
+  albums: [
+    { id:1, name:"BORN PINK", artist:"BLACKPINK", cover:"https://i.imgur.com/yWmTcKg.jpg" },
+    { id:2, name:"Love Poem", artist:"IU", cover:"https://i.imgur.com/ltwObgl.jpg" },
+    { id:3, name:"THE BOOK", artist:"YOASOBI", cover:"https://i.imgur.com/8q6RhSR.jpg" },
+    { id:4, name:"1989 (Taylor’s Version)", artist:"Taylor Swift", cover:"https://i.imgur.com/b8PZj2x.jpg" },
+    { id:5, name:"Made For Love", artist:"Sơn Tùng M-TP", cover:"https://i.imgur.com/DkaFg5h.jpg" }
+  ],
+  tracks: [
+    {id:1,title:"Pink Venom",artist:"BLACKPINK",album:"BORN PINK",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"},
+    {id:2,title:"Love Poem",artist:"IU",album:"Love Poem",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"},
+    {id:3,title:"Yoru ni Kakeru",artist:"YOASOBI",album:"THE BOOK",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"},
+    {id:4,title:"Lover",artist:"Taylor Swift",album:"1989 (Taylor’s Version)",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"},
+    {id:5,title:"Chúng Ta Của Hiện Tại",artist:"Sơn Tùng M-TP",album:"Made For Love",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"},
+    {id:6,title:"Trốn Tìm",artist:"Đen Vâu",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"},
+    {id:7,title:"Hype Boy",artist:"NewJeans",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"},
+    {id:8,title:"Bước Qua Mùa Cô Đơn",artist:"Vũ",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"},
+    {id:9,title:"Yêu 5",artist:"Min",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"},
+    {id:10,title:"7 rings",artist:"Ariana Grande",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"}
+  ],
+  history:[]
+};
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  if(id==='artists'){ renderArtists(); renderAlbums(); }
+  if(id==='tracks'){ renderTracks(); }
+  if(id==='history'){ renderHistory(); }
+  if(id==='admin'){ renderAdmin(); }
+}
+
+function renderTracks(){
+  const c=document.getElementById("track-list"); c.innerHTML="";
+  seed.tracks.forEach(t=>{
+    const div=document.createElement("div");
+    div.className="card"; div.textContent=`${t.title} - ${t.artist}`;
+    div.onclick=()=>playTrack(t);
+    c.appendChild(div);
+  });
+}
+
+function renderArtists(){
+  const c=document.getElementById("artist-list"); c.innerHTML="";
+  seed.artists.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<img src="${a.img}" alt=""><b>${a.name}</b>`;
+    div.onclick=()=>showArtist(a);
+    c.appendChild(div);
+  });
+}
+
+function showArtist(artist){
+  document.getElementById("artist-name").textContent=`🎤 ${artist.name}`;
+  const ul=document.getElementById("artist-tracks"); ul.innerHTML="";
+  seed.tracks.filter(t=>t.artist===artist.name).forEach(t=>{
+    const li=document.createElement("li");
+    li.textContent=t.title; li.onclick=()=>playTrack(t);
+    ul.appendChild(li);
+  });
+  document.getElementById("artist-detail").classList.remove("hidden");
+}
+
+function renderAlbums(){
+  const c=document.getElementById("album-list"); c.innerHTML="";
+  seed.albums.forEach(al=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<img src="${al.cover}" alt=""><b>${al.name}</b><p>${al.artist}</p>`;
+    div.onclick=()=>showAlbum(al);
+    c.appendChild(div);
+  });
+}
+
+function showAlbum(al){
+  document.getElementById("album-title").textContent=`💿 ${al.name}`;
+  const ul=document.getElementById("album-tracks"); ul.innerHTML="";
+  seed.tracks.filter(t=>t.album===al.name).forEach(t=>{
+    const li=document.createElement("li");
+    li.textContent=t.title + " - " + t.artist;
+    li.onclick=()=>playTrack(t);
+    ul.appendChild(li);
+  });
+  document.getElementById("album-detail").classList.remove("hidden");
+}
+
+function playTrack(t){
+  const a=document.getElementById("audio");
+  a.src=t.url; a.play();
+  seed.history.unshift(`${t.title} - ${t.artist}`);
+  if(seed.history.length>10) seed.history.pop();
+}
+
+function renderHistory(){
+  const list=document.getElementById("history-list");
+  list.innerHTML="";
+  seed.history.forEach(h=>{
+    const li=document.createElement("li");
+    li.textContent=h; list.appendChild(li);
+  });
+}
+
+function renderAdmin(){
+  const tbody=document.getElementById("admin-track-body"); tbody.innerHTML="";
+  seed.tracks.forEach(t=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${t.id}</td><td>${t.title}</td><td>${t.artist}</td><td><button onclick="del(${t.id})">❌</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+function del(id){ seed.tracks=seed.tracks.filter(x=>x.id!==id); renderAdmin(); }
+
+window.onload=()=>renderTracks();
+</script>
 </body>
 </html>

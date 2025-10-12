@@ -56,7 +56,7 @@ pastel-music-demo/
 - Bước 1: Tải toàn bộ thư mục dự án  
   *(hoặc clone bằng Git nếu có repo)*  
   ```bash
-  git clone https://github.com/<tên-user>/pastel-music-demo.git
+  git clone file:///F:/STUDY/C_C++/NMCNPM_MySQL/Midterm%20Test/music-demo-final.html
 - Bước 2: Mở file index.html bằng trình duyệt (Chrome, Edge, Firefox đều được)
 - Bước 3: Xem demo 🌸
 

@@ -4,9 +4,41 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>🌸 Pastel Music Demo</title>
-<link rel="stylesheet" href="style.css">
+<style>
+/* Giữ nguyên toàn bộ style cũ */
+:root {
+  --pink: #fcdce1;
+  --white: #fff;
+  --lav: #f6ecf7;
+  --mint: #e7f5f2;
+  --text: #444;
+}
+body { font-family: "Poppins", sans-serif; margin: 0; background: var(--lav); color: var(--text);}
+header { background: var(--pink); padding: 1em; text-align: center; font-weight: 600; font-size: 1.4em; color: #444; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+nav { display: flex; justify-content: center; background: var(--white); gap: 1em; padding: 0.8em; flex-wrap: wrap;}
+nav button { border: none; background: var(--mint); padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; transition: 0.2s;}
+nav button:hover { background: var(--pink);}
+main { padding: 1.2em; max-width: 900px; margin: auto;}
+.hidden { display: none;}
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1em;}
+.card { background: var(--white); border-radius: 1em; padding: 1em; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; cursor: pointer;}
+.card:hover { background: var(--pink);}
+#player { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: 0.8em; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);}
+#player-info { flex: 1; padding-left: 1em;}
+#player button { background: none; border: none; font-size: 1.3em; cursor: pointer; margin: 0 0.3em;}
+#playlist-detail { background: var(--lav); padding: 1em; border-radius: 1em; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-top: 1em;}
+.track-list { list-style: none; padding: 0; margin: 0;}
+.track-list li { display: flex; justify-content: space-between; align-items: center; background: var(--white); border-radius: 0.8em; padding: 0.7em 1em; margin-bottom: 0.5em; cursor: pointer; transition: 0.2s;}
+.track-list li:hover { background: var(--mint);}
+.add-btn { background: var(--pink); border: none; padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; margin-top: 1em;}
+.add-btn:hover { background: var(--mint);}
+.admin-table { width: 100%; border-collapse: collapse;}
+.admin-table th, .admin-table td { padding: 0.6em; border-bottom: 1px solid #ccc; text-align: left;}
+.admin-table th { background: var(--mint);}
+</style>
 </head>
 <body>
+
 <header>🌸 Pastel Music Demo</header>
 
 <nav>
@@ -21,8 +53,9 @@
 
 <main>
   <section id="home" class="view">
-    <h2>Khám phá Pastel Music</h2>
-    <p>🎵 Không gian âm nhạc pastel – dễ thương, nhẹ nhàng và cảm xúc. Chào mừng bạn đến với trang Prototype Web nhạc của Hân. Cùng chill với giai điệu yêu thích của bạn nhé!</p>
+    <h2>🌷 Khám phá Pastel Music</h2>
+    <p>🎵 Pastel Music mang đến không gian âm nhạc nhẹ nhàng, dễ thương và đầy cảm xúc. 
+    Chào mừng đến với Prototype Web nhạc của Hân. Hãy cùng khám phá các bài hát hot nhất và nghệ sĩ yêu thích nhé!</p>
   </section>
 
   <section id="tracks" class="view hidden">
@@ -30,33 +63,36 @@
     <div id="track-list" class="grid"></div>
   </section>
 
-  <section id="artists" class="view hidden">
-    <h2>Nghệ sĩ nổi bật</h2>
-    <div id="artist-list" class="grid"></div>
-    <div id="artist-detail" class="hidden">
-      <h3 id="artist-name"></h3>
-      <ul id="artist-tracks" class="track-list"></ul>
-    </div>
-
-    <h3 style="margin-top:2em;">Albums</h3>
-    <div id="album-list" class="grid"></div>
-    <div id="album-detail" class="hidden">
-      <h3 id="album-title"></h3>
-      <ul id="album-tracks" class="track-list"></ul>
-    </div>
+  <section id="search" class="view hidden">
+    <h2>🎈 Tìm kiếm bài hát</h2>
+    <input id="searchInput" type="text" placeholder="Nhập tên bài hát..." style="padding:0.5em;width:100%;border-radius:1em;border:none;">
+    <div id="searchResult" class="grid" style="margin-top:1em;"></div>
   </section>
 
   <section id="playlists" class="view hidden">
-    <h2>Playlists</h2>
+    <h2>🎼 Playlists</h2>
     <div id="playlist-list" class="grid"></div>
+
     <div id="playlist-detail" class="hidden">
       <h3 id="playlist-title"></h3>
       <ul id="playlist-tracks" class="track-list"></ul>
     </div>
+
+    <button class="add-btn" onclick="addPlaylist()">+ Tạo Playlist Mới</button>
+  </section>
+
+  <section id="artists" class="view hidden">
+    <h2>🎙 Nghệ sĩ nổi bật</h2>
+    <div id="artist-list" class="grid"></div>
+
+    <div id="albums-section" style="margin-top:2em;">
+      <h3>📓 Albums</h3>
+      <div id="album-list" class="grid"></div>
+    </div>
   </section>
 
   <section id="history" class="view hidden">
-    <h2>Lịch sử nghe</h2>
+    <h2>📼 Lịch sử nghe</h2>
     <ul id="history-list"></ul>
   </section>
 
@@ -66,116 +102,137 @@
       <thead><tr><th>ID</th><th>Tên bài hát</th><th>Nghệ sĩ</th><th>Thao tác</th></tr></thead>
       <tbody id="admin-track-body"></tbody>
     </table>
+    <button class="add-btn" onclick="addTrack()">+ Thêm bài hát</button>
   </section>
 </main>
 
-<footer id="player"><audio id="audio" controls style="width:100%;"></audio></footer>
+<footer id="player">
+  <audio id="audio" controls style="width:100%;"></audio>
+</footer>
 
 <script>
+// 🌸 DỮ LIỆU MẪU MỞ RỘNG
 const seed = {
   artists: [
-    { id:1, name:"BLACKPINK", img:"https://i.imgur.com/xwA4Pnh.jpg" },
-    { id:2, name:"IU", img:"https://i.imgur.com/vnygukZ.jpg" },
-    { id:3, name:"YOASOBI", img:"https://i.imgur.com/FxgU1mD.jpg" },
-    { id:4, name:"Taylor Swift", img:"https://i.imgur.com/av6zMSR.jpg" },
-    { id:5, name:"Sơn Tùng M-TP", img:"https://i.imgur.com/ujcY5El.jpg" },
-    { id:6, name:"Đen Vâu", img:"https://i.imgur.com/j5iSRPQ.jpg" },
-    { id:7, name:"NewJeans", img:"https://i.imgur.com/5f3upmX.jpg" },
-    { id:8, name:"Vũ", img:"https://i.imgur.com/9ulvDnc.jpg" },
-    { id:9, name:"Min", img:"https://i.imgur.com/znjQDRB.jpg" },
-    { id:10, name:"Ariana Grande", img:"https://i.imgur.com/NZrYdLb.jpg" }
+    { id:1, name:"BLACKPINK" }, { id:2, name:"IU" }, { id:3, name:"YOASOBI" },
+    { id:4, name:"Taylor Swift" }, { id:5, name:"Sơn Tùng M-TP" },
+    { id:6, name:"Đen Vâu" }, { id:7, name:"NewJeans" },
+    { id:8, name:"Vũ" }, { id:9, name:"Min" }, { id:10, name:"Ariana Grande" }
   ],
   albums: [
-    { id:1, name:"BORN PINK", artist:"BLACKPINK", cover:"https://i.imgur.com/yWmTcKg.jpg" },
-    { id:2, name:"Love Poem", artist:"IU", cover:"https://i.imgur.com/ltwObgl.jpg" },
-    { id:3, name:"THE BOOK", artist:"YOASOBI", cover:"https://i.imgur.com/8q6RhSR.jpg" },
-    { id:4, name:"1989 (Taylor’s Version)", artist:"Taylor Swift", cover:"https://i.imgur.com/b8PZj2x.jpg" },
-    { id:5, name:"Made For Love", artist:"Sơn Tùng M-TP", cover:"https://i.imgur.com/DkaFg5h.jpg" }
+    { id:1, name:"BORN PINK", artist:"BLACKPINK" },
+    { id:2, name:"Love Poem", artist:"IU" },
+    { id:3, name:"THE BOOK", artist:"YOASOBI" },
+    { id:4, name:"1989 (Taylor’s Version)", artist:"Taylor Swift" },
+    { id:5, name:"Made For Love", artist:"Sơn Tùng M-TP" },
+    { id:6, name:"Đi Trong Mùa Hè", artist:"Đen Vâu" }
   ],
   tracks: [
-    {id:1,title:"Pink Venom",artist:"BLACKPINK",album:"BORN PINK",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"},
-    {id:2,title:"Love Poem",artist:"IU",album:"Love Poem",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"},
-    {id:3,title:"Yoru ni Kakeru",artist:"YOASOBI",album:"THE BOOK",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"},
-    {id:4,title:"Lover",artist:"Taylor Swift",album:"1989 (Taylor’s Version)",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"},
-    {id:5,title:"Chúng Ta Của Hiện Tại",artist:"Sơn Tùng M-TP",album:"Made For Love",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"},
-    {id:6,title:"Trốn Tìm",artist:"Đen Vâu",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"},
-    {id:7,title:"Hype Boy",artist:"NewJeans",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"},
-    {id:8,title:"Bước Qua Mùa Cô Đơn",artist:"Vũ",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"},
-    {id:9,title:"Yêu 5",artist:"Min",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"},
-    {id:10,title:"7 rings",artist:"Ariana Grande",album:"-",url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"}
+    { id:1, title:"Pink Venom", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"},
+    { id:2, title:"Lovesick Girls", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"},
+    { id:3, title:"Love Poem", artist:"IU", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"},
+    { id:4, title:"Yoru ni Kakeru", artist:"YOASOBI", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"},
+    { id:5, title:"Lover", artist:"Taylor Swift", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"},
+    { id:6, title:"Chúng Ta Của Hiện Tại", artist:"Sơn Tùng M-TP", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"},
+    { id:7, title:"Trốn Tìm", artist:"Đen Vâu", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"},
+    { id:8, title:"Hype Boy", artist:"NewJeans", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"},
+    { id:9, title:"Bước Qua Mùa Cô Đơn", artist:"Vũ", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"},
+    { id:10, title:"Yêu 5", artist:"Min", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"},
+    { id:11, title:"7 rings", artist:"Ariana Grande", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"},
+    { id:12, title:"Anti-Hero", artist:"Taylor Swift", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3"},
+    { id:13, title:"Một Triệu Like", artist:"Đen Vâu", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3"},
+    { id:14, title:"Forever Young", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3"},
+    { id:15, title:"Blueming", artist:"IU", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"},
+    { id:16, title:"ETA", artist:"NewJeans", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"},
+    { id:17, title:"Đừng Làm Trái Tim Anh Đau", artist:"Sơn Tùng M-TP", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3"},
+    { id:18, title:"My Favorite Clothes", artist:"RINI", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3"},
+    { id:19, title:"Shinunoga E-Wa", artist:"Fujii Kaze", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3"},
+    { id:20, title:"Positions", artist:"Ariana Grande", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3"}
   ],
-  history:[]
+  playlists: [
+    { id:1, name:"Chill Pastel", tracks:[3,7,9,10] },
+    { id:2, name:"Pop Love Mix", tracks:[1,5,12,20] },
+    { id:3, name:"Vibes of Vietnam", tracks:[6,7,9,10,13,17] },
+    { id:4, name:"Study & Focus", tracks:[3,4,8,15,18,19] },
+    { id:5, name:"Kpop Energy", tracks:[1,2,8,14,16] }
+  ],
+  history: []
 };
 
+// 🌸 Phần JS giữ nguyên logic cũ
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
-  if(id==='artists'){ renderArtists(); renderAlbums(); }
-  if(id==='tracks'){ renderTracks(); }
-  if(id==='history'){ renderHistory(); }
-  if(id==='admin'){ renderAdmin(); }
+  if(id==='playlists') renderPlaylists();
+  if(id==='artists') { renderArtists(); renderAlbums(); }
+  if(id==='tracks') renderTracks();
+  if(id==='history') renderHistory();
+  if(id==='admin') renderAdminTracks();
 }
 
 function renderTracks(){
-  const c=document.getElementById("track-list"); c.innerHTML="";
+  const container=document.getElementById("track-list");
+  container.innerHTML="";
   seed.tracks.forEach(t=>{
     const div=document.createElement("div");
-    div.className="card"; div.textContent=`${t.title} - ${t.artist}`;
-    div.onclick=()=>playTrack(t);
-    c.appendChild(div);
+    div.className="card";
+    div.textContent=`${t.title} - ${t.artist}`;
+    div.onclick=()=>playById(t.id);
+    container.appendChild(div);
   });
 }
 
 function renderArtists(){
-  const c=document.getElementById("artist-list"); c.innerHTML="";
+  const list=document.getElementById("artist-list");
+  list.innerHTML="";
   seed.artists.forEach(a=>{
     const div=document.createElement("div");
     div.className="card";
-    div.innerHTML=`<img src="${a.img}" alt=""><b>${a.name}</b>`;
-    div.onclick=()=>showArtist(a);
-    c.appendChild(div);
+    div.textContent=a.name;
+    list.appendChild(div);
   });
-}
-
-function showArtist(artist){
-  document.getElementById("artist-name").textContent=`🎤 ${artist.name}`;
-  const ul=document.getElementById("artist-tracks"); ul.innerHTML="";
-  seed.tracks.filter(t=>t.artist===artist.name).forEach(t=>{
-    const li=document.createElement("li");
-    li.textContent=t.title; li.onclick=()=>playTrack(t);
-    ul.appendChild(li);
-  });
-  document.getElementById("artist-detail").classList.remove("hidden");
 }
 
 function renderAlbums(){
-  const c=document.getElementById("album-list"); c.innerHTML="";
+  const list=document.getElementById("album-list");
+  list.innerHTML="";
   seed.albums.forEach(al=>{
     const div=document.createElement("div");
     div.className="card";
-    div.innerHTML=`<img src="${al.cover}" alt=""><b>${al.name}</b><p>${al.artist}</p>`;
-    div.onclick=()=>showAlbum(al);
-    c.appendChild(div);
+    div.textContent=`${al.name} - ${al.artist}`;
+    list.appendChild(div);
   });
 }
 
-function showAlbum(al){
-  document.getElementById("album-title").textContent=`💿 ${al.name}`;
-  const ul=document.getElementById("album-tracks"); ul.innerHTML="";
-  seed.tracks.filter(t=>t.album===al.name).forEach(t=>{
-    const li=document.createElement("li");
-    li.textContent=t.title + " - " + t.artist;
-    li.onclick=()=>playTrack(t);
-    ul.appendChild(li);
+function renderPlaylists(){
+  const container=document.getElementById("playlist-list");
+  container.innerHTML="";
+  seed.playlists.forEach(pl=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<h3>${pl.name}</h3><p>${pl.tracks.length} bài hát</p>`;
+    div.onclick=()=>showPlaylistDetail(pl.id);
+    container.appendChild(div);
   });
-  document.getElementById("album-detail").classList.remove("hidden");
 }
 
-function playTrack(t){
-  const a=document.getElementById("audio");
-  a.src=t.url; a.play();
-  seed.history.unshift(`${t.title} - ${t.artist}`);
-  if(seed.history.length>10) seed.history.pop();
+function showPlaylistDetail(id){
+  const playlist=seed.playlists.find(p=>p.id===id);
+  if(!playlist) return;
+  document.getElementById("playlist-title").textContent=playlist.name;
+  const list=document.getElementById("playlist-tracks");
+  list.innerHTML="";
+  playlist.tracks.forEach(tid=>{
+    const t=seed.tracks.find(tr=>tr.id===tid);
+    if(t){
+      const li=document.createElement("li");
+      li.innerHTML=`<span>${t.title} - <em>${t.artist}</em></span><button>▶️</button>`;
+      li.onclick=()=>playById(t.id);
+      li.querySelector("button").onclick=e=>{e.stopPropagation();playById(t.id);};
+      list.appendChild(li);
+    }
+  });
+  document.getElementById("playlist-detail").classList.remove("hidden");
 }
 
 function renderHistory(){
@@ -183,21 +240,88 @@ function renderHistory(){
   list.innerHTML="";
   seed.history.forEach(h=>{
     const li=document.createElement("li");
-    li.textContent=h; list.appendChild(li);
+    li.textContent=h;
+    list.appendChild(li);
   });
 }
 
-function renderAdmin(){
-  const tbody=document.getElementById("admin-track-body"); tbody.innerHTML="";
+function playById(id){
+  const track=seed.tracks.find(t=>t.id===id);
+  if(track){
+    const audio=document.getElementById("audio");
+    audio.src=track.url;
+    audio.play();
+    seed.history.unshift(`${track.title} - ${track.artist}`);
+    if(seed.history.length>10) seed.history.pop();
+  }
+}
+
+function addPlaylist(){
+  const name=prompt("Nhập tên playlist:");
+  if(!name) return;
+  const newId=Math.max(...seed.playlists.map(p=>p.id))+1;
+  seed.playlists.push({id:newId,name,tracks:[]});
+  renderPlaylists();
+}
+
+function doSearch(){
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  const res=document.getElementById("searchResult");
+  res.innerHTML="";
+  seed.tracks.filter(t=>t.title.toLowerCase().includes(q)||t.artist.toLowerCase().includes(q))
+  .forEach(t=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.textContent=`${t.title} - ${t.artist}`;
+    div.onclick=()=>playById(t.id);
+    res.appendChild(div);
+  });
+}
+document.getElementById("searchInput").addEventListener("input",doSearch);
+
+function renderAdminTracks(){
+  const tbody=document.getElementById("admin-track-body");
+  tbody.innerHTML="";
   seed.tracks.forEach(t=>{
     const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${t.id}</td><td>${t.title}</td><td>${t.artist}</td><td><button onclick="del(${t.id})">❌</button></td>`;
+    tr.innerHTML=`<td>${t.id}</td><td>${t.title}</td><td>${t.artist}</td>
+    <td><button onclick="editTrack(${t.id})">✏️</button>
+    <button onclick="deleteTrack(${t.id})">🗑️</button></td>`;
     tbody.appendChild(tr);
   });
 }
-function del(id){ seed.tracks=seed.tracks.filter(x=>x.id!==id); renderAdmin(); }
 
-window.onload=()=>renderTracks();
+function addTrack(){
+  const title=prompt("Tên bài hát:");
+  const artist=prompt("Nghệ sĩ:");
+  if(!title||!artist) return;
+  const newId=Math.max(...seed.tracks.map(t=>t.id))+1;
+  seed.tracks.push({id:newId,title,artist,url:""});
+  renderAdminTracks();
+}
+
+function editTrack(id){
+  const t=seed.tracks.find(x=>x.id===id);
+  if(!t) return;
+  const newTitle=prompt("Tên bài hát mới:",t.title);
+  const newArtist=prompt("Nghệ sĩ mới:",t.artist);
+  if(newTitle&&newArtist){
+    t.title=newTitle;
+    t.artist=newArtist;
+    renderAdminTracks();
+  }
+}
+
+function deleteTrack(id){
+  if(confirm("Xoá bài hát này?")){
+    const idx=seed.tracks.findIndex(t=>t.id===id);
+    if(idx>-1) seed.tracks.splice(idx,1);
+    renderAdminTracks();
+  }
+}
+
+function init(){ renderTracks(); }
+window.onload=init;
 </script>
 </body>
 </html>

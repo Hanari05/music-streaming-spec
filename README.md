@@ -16,8 +16,11 @@ Dự án được xây dựng bằng **HTML + CSS + JavaScript (thuần)**, nh�
 ## 🧩 Cấu trúc thư mục
 
 pastel-music-demo/
+
 ├── index.html # Giao diện chính của ứng dụng
+
 ├── style.css # File CSS riêng (màu pastel nhẹ nhàng)
+
 └── script.js # Logic JavaScript (render UI, play nhạc, CRUD)
 
 

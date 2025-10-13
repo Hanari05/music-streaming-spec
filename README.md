@@ -69,7 +69,7 @@ Branch: main
 Folder: / (root)
 Nhấn Save, đợi vài giây
 - Truy cập link:
-👉 [Demo Music Streaming Web App của Hân](https://hanari05.github.io/music-streaming-spec/)
+👉 [Demo Music Streaming Web App](https://hanari05.github.io/music-streaming-spec/)
 
 ---
 

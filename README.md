@@ -5,7 +5,7 @@ Dự án được xây dựng bằng **HTML + CSS + JavaScript (thuần)**, nh�
 
 ---
 
-# 💾 Báo cáo giữa kì [Demo Web App](https://hanari05.github.io/music-streaming-spec/)
+# 💾 Báo cáo giữa kì [Demo Music Streaming Web App](https://hanari05.github.io/music-streaming-spec/)
 
 ---
 

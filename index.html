@@ -1,328 +1,196 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>🌸 Pastel Music Demo</title>
-<style>
-/* Giữ nguyên toàn bộ style cũ */
-:root {
-  --pink: #fcdce1;
-  --white: #fff;
-  --lav: #f6ecf7;
-  --mint: #e7f5f2;
-  --text: #444;
-}
-body { font-family: "Poppins", sans-serif; margin: 0; background: var(--lav); color: var(--text);}
-header { background: var(--pink); padding: 1em; text-align: center; font-weight: 600; font-size: 1.4em; color: #444; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-nav { display: flex; justify-content: center; background: var(--white); gap: 1em; padding: 0.8em; flex-wrap: wrap;}
-nav button { border: none; background: var(--mint); padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; transition: 0.2s;}
-nav button:hover { background: var(--pink);}
-main { padding: 1.2em; max-width: 900px; margin: auto;}
-.hidden { display: none;}
-.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1em;}
-.card { background: var(--white); border-radius: 1em; padding: 1em; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; cursor: pointer;}
-.card:hover { background: var(--pink);}
-#player { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: 0.8em; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);}
-#player-info { flex: 1; padding-left: 1em;}
-#player button { background: none; border: none; font-size: 1.3em; cursor: pointer; margin: 0 0.3em;}
-#playlist-detail { background: var(--lav); padding: 1em; border-radius: 1em; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-top: 1em;}
-.track-list { list-style: none; padding: 0; margin: 0;}
-.track-list li { display: flex; justify-content: space-between; align-items: center; background: var(--white); border-radius: 0.8em; padding: 0.7em 1em; margin-bottom: 0.5em; cursor: pointer; transition: 0.2s;}
-.track-list li:hover { background: var(--mint);}
-.add-btn { background: var(--pink); border: none; padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; margin-top: 1em;}
-.add-btn:hover { background: var(--mint);}
-.admin-table { width: 100%; border-collapse: collapse;}
-.admin-table th, .admin-table td { padding: 0.6em; border-bottom: 1px solid #ccc; text-align: left;}
-.admin-table th { background: var(--mint);}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Báo cáo - 7 Yêu cầu Bài Kiểm Tra Giữa Kì</title>
+  <style>
+    :root{ --bg:#fafafa; --card:#ffffff; --muted:#6b7280; --accent:#2563eb; --gap:18px; }
+    body{ font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#111827; margin:0; padding:32px; }
+    .container{ max-width:980px; margin:0 auto; }
+    header{ display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+    header h1{ font-size:20px; margin:0; }
+    header p{ margin:0; color:var(--muted); font-size:13px; }
+    .card{ background:var(--card); border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.06); padding:20px; margin-bottom:var(--gap); }
+    .section-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    h2{ margin:0 0 8px 0; font-size:16px; }
+    p.small{ color:var(--muted); margin:0 0 12px 0; font-size:13px; }
+    .placeholder{ border:2px dashed #e6e9ef; border-radius:8px; padding:18px; text-align:center; color:var(--muted); background:linear-gradient(180deg, rgba(250,250,252,1), rgba(255,255,255,0.6)); }
+    .placeholder img{ max-width:100%; height:auto; display:block; margin:6px auto; }
+    .meta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+    a.btn{ display:inline-block; padding:8px 12px; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-size:13px; }
+    a.link{ color:var(--accent); text-decoration:underline; font-size:13px; }
+    ul{ margin:8px 0 0 20px; }
+    code{ background:#0f172a08; padding:2px 6px; border-radius:6px; }
+    footer{ margin-top:26px; color:var(--muted); font-size:13px; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Báo cáo: 7 Yêu cầu - Bài kiểm tra giữa kì</h1>
+        <p>File index.html chứa cấu trúc báo cáo, chừa chỗ để bạn thêm ảnh, link HTML prototype và video demo.</p>
+      </div>
+    </header>
 
-<header>🌸 Pastel Music Demo</header>
+    <!-- 1. Use Case -->
+    <section class="card" id="usecase">
+      <div class="section-title">
+        <h2>1. Thiết kế sơ đồ Use Case</h2>
+        <span class="small">Yêu cầu: ảnh + mô tả</span>
+      </div>
+      <p class="small">Mô tả: Trình bày các tác nhân (actor) và các ca sử dụng (use cases). Đính kèm hình ảnh sơ đồ và phần mô tả chi tiết cho từng use case.</p>
+      <div class="placeholder">
+        <img id="usecase-img" src="/3.1 Thiết kế sơ đồ Use Case/music web app-UC.drawio.png" alt="Use Case diagram" />
 
-<nav>
-  <button onclick="showView('home')">Trang chủ</button>
-  <button onclick="showView('tracks')">Tracks</button>
-  <button onclick="showView('search')">Tìm kiếm</button>
-  <button onclick="showView('playlists')">Playlists</button>
-  <button onclick="showView('artists')">Nghệ sĩ</button>
-  <button onclick="showView('history')">Lịch sử</button>
-  <button onclick="showView('admin')">Admin</button>
-</nav>
+      <h3 style="margin-top:12px;">Mô tả chi tiết (ví dụ)</h3>
+      <p class="small">- Actor: <strong>Người dùng</strong> — Mô tả: Người dùng có thể đăng nhập, tìm kiếm, phát nhạc.<br>- Use Case: <strong>Đăng nhập</strong> — Mô tả: Người dùng nhập email và mật khẩu, hệ thống xác thực và chuyển đến trang chính.</p>
 
-<main>
-  <section id="home" class="view">
-    <h2>🌷 Khám phá Pastel Music</h2>
-    <p>🎵 Pastel Music mang đến không gian âm nhạc nhẹ nhàng, dễ thương và đầy cảm xúc.<br><br>
-    Chào mừng đến với Prototype Web nhạc của Hân. Đây là nơi để Hân thể hiện cảm xúc và màu sắc của mình thông qua âm nhạc và thiết kế~ <br><br>
-    Hãy bắt đầu bằng cách lướt qua Tracks hoặc tìm kiếm bài hát mà bạn yêu thích nhé !</p>
-  </section>
+      <div class="meta">
+        <a class="btn" href="#usecase">Chỉnh sửa ảnh</a>
+        <a class="link" href="#">Thêm mô tả chi tiết (tệp .md hoặc .pdf)</a>
+      </div>
+    </section>
 
-  <section id="tracks" class="view hidden">
-    <h2>🎧 Danh sách bài hát</h2>
-    <div id="track-list" class="grid"></div>
-  </section>
+    <!-- 2. Sequence Diagram -->
+    <section class="card" id="sequence">
+      <div class="section-title">
+        <h2>2. Thiết kế Sequence Diagram</h2>
+        <span class="small">Yêu cầu: ảnh</span>
+      </div>
+      <p class="small">Mô tả: Minh hoạ luồng thông điệp giữa các đối tượng trong một kịch bản chức năng (ví dụ: Đăng nhập, Thêm bài hát vào playlist).</p>
+      <div class="placeholder">
+        <img id="sequence-img" src="/3.2 Thiết kế Sequence Diagram/music web app-SD_01.drawio.png" alt="Sequence diagram - Phát nhạc một bài" />
+        <p>Thay <code>src</code> bằng URL ảnh sequence diagram của bạn.</p>
+      </div>
+      <div class="placeholder">
+        <img id="sequence-img" src="/3.2 Thiết kế Sequence Diagram/music web app-SD_02.drawio.png" alt="Sequence diagram - Thêm bài vào playlist" />
+        <p>Thay <code>src</code> bằng URL ảnh sequence diagram của bạn.</p>
+      </div>
+      <div class="meta">
+        <a class="link" href="#">Tải ảnh Sequence Diagram</a>
+      </div>
+       <div class="meta">
+        <a class="link" href="#">Tải ảnh Sequence Diagram</a>
+      </div>
+    </section>
 
-  <section id="search" class="view hidden">
-    <h2>🎈 Tìm kiếm bài hát</h2>
-    <input id="searchInput" type="text" placeholder="Nhập tên bài hát..." style="padding:0.5em;width:100%;border-radius:1em;border:none;">
-    <div id="searchResult" class="grid" style="margin-top:1em;"></div>
-  </section>
+    <!-- 3. ER -->
+    <section class="card" id="er">
+      <div class="section-title">
+        <h2>3. Thiết kế sơ đồ Thực thể–Kết hợp (ER)</h2>
+        <span class="small">Yêu cầu: ảnh</span>
+      </div>
+      <p class="small">Mô tả: Vẽ các thực thể, thuộc tính và quan hệ. Sử dụng sơ đồ ER truyền thống để thể hiện ràng buộc chính/ngoại khoá (nếu cần).</p>
+      <div class="placeholder">
+        <img id="er-img" src="/3.3 Thiết kế sơ đồ Thực thể–Kết hợp (ER)/music web app-ER.drawio.png" alt="ER diagram" />
+        <p>Thay <code>src</code> bằng URL ảnh ER diagram.</p>
+      </div>
+      <div class="meta">
+        <a class="link" href="#">Tải ảnh ER</a>
+      </div>
+    </section>
 
-  <section id="playlists" class="view hidden">
-    <h2>🎼 Playlists</h2>
-    <div id="playlist-list" class="grid"></div>
+    <!-- 4. ERD (Logical/Physical) -->
+    <section class="card" id="erd">
+      <div class="section-title">
+        <h2>4. Thiết kế sơ đồ CSDL (ERD — Logical / Physical)</h2>
+        <span class="small">Yêu cầu: ảnh</span>
+      </div>
+      <p class="small">Mô tả: Cung cấp ERD dạng Logical (mô hình lôgic) và Physical (bảng, khoá, kiểu dữ liệu). Nếu có, đính kèm SQL DDL (CREATE TABLE).</p>
+      <div class="placeholder">
+        <img id="erd-img" src="/3.4 Thiết kế sơ đồ CSDL (ERD – LogicalPhysical)/music web app-ERD.drawio.png" alt="ERD diagram" />
+        <p>Thay <code>src</code> bằng URL ảnh ERD (logical/physical).</p>
+      </div>
 
-    <div id="playlist-detail" class="hidden">
-      <h3 id="playlist-title"></h3>
-      <ul id="playlist-tracks" class="track-list"></ul>
-    </div>
+      <h3 style="margin-top:12px;">Ví dụ: SQL DDL</h3>
+      <pre style="background:#f8fafc;padding:10px;border-radius:8px;overflow:auto;">-- Thí dụ bảng Users
+CREATE TABLE Users (
+  id INT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</pre>
+    </section>
 
-    <button class="add-btn" onclick="addPlaylist()">+ Tạo Playlist Mới</button>
-  </section>
+    <!-- 5. Prototype -->
+    <section class="card" id="prototype">
+      <div class="section-title">
+        <h2>5. Thiết kế giao diện Prototype (wireframe / mockup)</h2>
+        <span class="small">Yêu cầu: chừa link ảnh & file HTML</span>
+      </div>
+      <p class="small">Mô tả: Đặt link tới hình wireframe/mockup và link tới file HTML prototype (nếu có). Hệ thống chừa sẵn chỗ để bạn dán link.</p>
 
-  <section id="artists" class="view hidden">
-    <h2>🎙 Nghệ sĩ nổi bật</h2>
-    <div id="artist-list" class="grid"></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <div style="flex:1;min-width:220px;">
+          <label style="font-size:13px;color:var(--muted);">Link ảnh wireframe:</label>
+          <div class="placeholder" style="padding:12px;">
+            <p id="wireframe-link">LINK_TO_WIREFRAME_IMAGE_OR_THUMBNAIL</p>
+            <p class="small">(Thay bằng URL ảnh)</p>
+          </div>
+        </div>
+        <div style="flex:1;min-width:220px;">
+          <label style="font-size:13px;color:var(--muted);">Link file HTML prototype:</label>
+          <div class="placeholder" style="padding:12px;">
+            <p id="prototype-link">LINK_TO_PROTOTYPE_HTML</p>
+          </div>
+        </div>
+      </div>
 
-    <div id="albums-section" style="margin-top:2em;">
-      <h3>📓 Albums</h3>
-      <div id="album-list" class="grid"></div>
-    </div>
-  </section>
+      <div class="meta">
+        <a class="btn" href="#prototype">Thêm link</a>
+      </div>
+    </section>
 
-  <section id="history" class="view hidden">
-    <h2>📼 Lịch sử nghe</h2>
-    <ul id="history-list"></ul>
-  </section>
+    <!-- 6. Business rules & Test cases -->
+    <section class="card" id="rules-tests">
+      <div class="section-title">
+        <h2>6. Quy tắc nghiệp vụ & Test case</h2>
+        <span class="small">Yêu cầu: chừa link ảnh</span>
+      </div>
+      <p class="small">Mô tả: Liệt kê quy tắc nghiệp vụ quan trọng (business rules) và các test case kèm theo bước thực hiện, dữ liệu đầu vào và kết quả mong đợi. Chừa chỗ để bạn đính kèm ảnh minh hoạ test (screenshot kết quả).</p>
 
-  <section id="admin" class="view hidden">
-    <h2>🎛️ Khu vực Admin (CRUD nội dung)</h2>
-    <table class="admin-table">
-      <thead><tr><th>ID</th><th>Tên bài hát</th><th>Nghệ sĩ</th><th>Thao tác</th></tr></thead>
-      <tbody id="admin-track-body"></tbody>
-    </table>
-    <button class="add-btn" onclick="addTrack()">+ Thêm bài hát</button>
-  </section>
-</main>
+      <h3 style="margin-top:8px;">Ví dụ ngắn</h3>
+      <ul>
+        <li>BR-01: Người dùng phải đăng ký bằng email hợp lệ.</li>
+        <li>TC-01: Đăng ký thành công với email hợp lệ — Kết quả mong đợi: Tạo tài khoản và gửi email xác nhận.</li>
+      </ul>
 
-<footer id="player">
-  <audio id="audio" controls style="width:100%;"></audio>
-</footer>
+      <div class="placeholder" style="margin-top:10px;">
+        <p id="tests-screenshot">LINK_TO_TESTCASE_SCREENSHOT_OR_FOLDER</p>
+        <p class="small">(Thay bằng URL ảnh test case hoặc tệp chứa các test case chi tiết)</p>
+      </div>
+    </section>
 
-<script>
-// 🌸 DỮ LIỆU MẪU MỞ RỘNG
-const seed = {
-  artists: [
-    { id:1, name:"BLACKPINK" }, { id:2, name:"IU" }, { id:3, name:"YOASOBI" },
-    { id:4, name:"Taylor Swift" }, { id:5, name:"Sơn Tùng M-TP" },
-    { id:6, name:"Đen Vâu" }, { id:7, name:"NewJeans" },
-    { id:8, name:"Vũ" }, { id:9, name:"Min" }, { id:10, name:"Ariana Grande" }
-  ],
-  albums: [
-    { id:1, name:"BORN PINK", artist:"BLACKPINK" },
-    { id:2, name:"Love Poem", artist:"IU" },
-    { id:3, name:"THE BOOK", artist:"YOASOBI" },
-    { id:4, name:"1989 (Taylor’s Version)", artist:"Taylor Swift" },
-    { id:5, name:"Made For Love", artist:"Sơn Tùng M-TP" },
-    { id:6, name:"Đi Trong Mùa Hè", artist:"Đen Vâu" }
-  ],
-  tracks: [
-    { id:1, title:"Pink Venom", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"},
-    { id:2, title:"Lovesick Girls", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"},
-    { id:3, title:"Love Poem", artist:"IU", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"},
-    { id:4, title:"Yoru ni Kakeru", artist:"YOASOBI", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"},
-    { id:5, title:"Lover", artist:"Taylor Swift", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"},
-    { id:6, title:"Chúng Ta Của Hiện Tại", artist:"Sơn Tùng M-TP", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"},
-    { id:7, title:"Trốn Tìm", artist:"Đen Vâu", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"},
-    { id:8, title:"Hype Boy", artist:"NewJeans", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"},
-    { id:9, title:"Bước Qua Mùa Cô Đơn", artist:"Vũ", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"},
-    { id:10, title:"Yêu 5", artist:"Min", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"},
-    { id:11, title:"7 rings", artist:"Ariana Grande", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"},
-    { id:12, title:"Anti-Hero", artist:"Taylor Swift", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3"},
-    { id:13, title:"Một Triệu Like", artist:"Đen Vâu", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3"},
-    { id:14, title:"Forever Young", artist:"BLACKPINK", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3"},
-    { id:15, title:"Blueming", artist:"IU", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"},
-    { id:16, title:"ETA", artist:"NewJeans", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"},
-    { id:17, title:"Đừng Làm Trái Tim Anh Đau", artist:"Sơn Tùng M-TP", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3"},
-    { id:18, title:"My Favorite Clothes", artist:"RINI", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3"},
-    { id:19, title:"Shinunoga E-Wa", artist:"Fujii Kaze", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3"},
-    { id:20, title:"Positions", artist:"Ariana Grande", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3"}
-  ],
-  playlists: [
-    { id:1, name:"Chill Pastel", tracks:[3,7,9,10] },
-    { id:2, name:"Pop Love Mix", tracks:[1,5,12,20] },
-    { id:3, name:"Vibes of Vietnam", tracks:[6,7,9,10,13,17] },
-    { id:4, name:"Study & Focus", tracks:[3,4,8,15,18,19] },
-    { id:5, name:"Kpop Energy", tracks:[1,2,8,14,16] }
-  ],
-  history: []
-};
+    <!-- 7. Demo simulation -->
+    <section class="card" id="demo">
+      <div class="section-title">
+        <h2>7. Demo mô phỏng</h2>
+        <span class="small">Yêu cầu: chừa link video & HTML prototype</span>
+      </div>
+      <p class="small">Mô tả: Chèn link video demo (ví dụ: YouTube/MP4) hoặc link tới prototype HTML có thể chạy trực tiếp.</p>
 
-// 🌸 Phần JS giữ nguyên logic cũ
-function showView(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  if(id==='playlists') renderPlaylists();
-  if(id==='artists') { renderArtists(); renderAlbums(); }
-  if(id==='tracks') renderTracks();
-  if(id==='history') renderHistory();
-  if(id==='admin') renderAdminTracks();
-}
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
+          <label class="small">Link video demo:</label>
+          <div class="placeholder"><p id="video-link">LINK_TO_VIDEO_DEMO</p></div>
+        </div>
+        <div style="flex:1;min-width:220px;">
+          <label class="small">Link HTML prototype (chạy demo):</label>
+          <div class="placeholder"><p id="demo-proto">LINK_TO_RUNNABLE_HTML_PROTOTYPE</p></div>
+        </div>
+      </div>
 
-function renderTracks(){
-  const container=document.getElementById("track-list");
-  container.innerHTML="";
-  seed.tracks.forEach(t=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.textContent=`${t.title} - ${t.artist}`;
-    div.onclick=()=>playById(t.id);
-    container.appendChild(div);
-  });
-}
+      <div class="meta" style="margin-top:12px;">
+        <a class="link" href="#">Hướng dẫn nén/đóng gói demo</a>
+      </div>
+    </section>
 
-function renderArtists(){
-  const list=document.getElementById("artist-list");
-  list.innerHTML="";
-  seed.artists.forEach(a=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.textContent=a.name;
-    list.appendChild(div);
-  });
-}
-
-function renderAlbums(){
-  const list=document.getElementById("album-list");
-  list.innerHTML="";
-  seed.albums.forEach(al=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.textContent=`${al.name} - ${al.artist}`;
-    list.appendChild(div);
-  });
-}
-
-function renderPlaylists(){
-  const container=document.getElementById("playlist-list");
-  container.innerHTML="";
-  seed.playlists.forEach(pl=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<h3>${pl.name}</h3><p>${pl.tracks.length} bài hát</p>`;
-    div.onclick=()=>showPlaylistDetail(pl.id);
-    container.appendChild(div);
-  });
-}
-
-function showPlaylistDetail(id){
-  const playlist=seed.playlists.find(p=>p.id===id);
-  if(!playlist) return;
-  document.getElementById("playlist-title").textContent=playlist.name;
-  const list=document.getElementById("playlist-tracks");
-  list.innerHTML="";
-  playlist.tracks.forEach(tid=>{
-    const t=seed.tracks.find(tr=>tr.id===tid);
-    if(t){
-      const li=document.createElement("li");
-      li.innerHTML=`<span>${t.title} - <em>${t.artist}</em></span><button>▶️</button>`;
-      li.onclick=()=>playById(t.id);
-      li.querySelector("button").onclick=e=>{e.stopPropagation();playById(t.id);};
-      list.appendChild(li);
-    }
-  });
-  document.getElementById("playlist-detail").classList.remove("hidden");
-}
-
-function renderHistory(){
-  const list=document.getElementById("history-list");
-  list.innerHTML="";
-  seed.history.forEach(h=>{
-    const li=document.createElement("li");
-    li.textContent=h;
-    list.appendChild(li);
-  });
-}
-
-function playById(id){
-  const track=seed.tracks.find(t=>t.id===id);
-  if(track){
-    const audio=document.getElementById("audio");
-    audio.src=track.url;
-    audio.play();
-    seed.history.unshift(`${track.title} - ${track.artist}`);
-    if(seed.history.length>10) seed.history.pop();
-  }
-}
-
-function addPlaylist(){
-  const name=prompt("Nhập tên playlist:");
-  if(!name) return;
-  const newId=Math.max(...seed.playlists.map(p=>p.id))+1;
-  seed.playlists.push({id:newId,name,tracks:[]});
-  renderPlaylists();
-}
-
-function doSearch(){
-  const q=document.getElementById("searchInput").value.toLowerCase();
-  const res=document.getElementById("searchResult");
-  res.innerHTML="";
-  seed.tracks.filter(t=>t.title.toLowerCase().includes(q)||t.artist.toLowerCase().includes(q))
-  .forEach(t=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.textContent=`${t.title} - ${t.artist}`;
-    div.onclick=()=>playById(t.id);
-    res.appendChild(div);
-  });
-}
-document.getElementById("searchInput").addEventListener("input",doSearch);
-
-function renderAdminTracks(){
-  const tbody=document.getElementById("admin-track-body");
-  tbody.innerHTML="";
-  seed.tracks.forEach(t=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${t.id}</td><td>${t.title}</td><td>${t.artist}</td>
-    <td><button onclick="editTrack(${t.id})">✏️</button>
-    <button onclick="deleteTrack(${t.id})">🗑️</button></td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-function addTrack(){
-  const title=prompt("Tên bài hát:");
-  const artist=prompt("Nghệ sĩ:");
-  if(!title||!artist) return;
-  const newId=Math.max(...seed.tracks.map(t=>t.id))+1;
-  seed.tracks.push({id:newId,title,artist,url:""});
-  renderAdminTracks();
-}
-
-function editTrack(id){
-  const t=seed.tracks.find(x=>x.id===id);
-  if(!t) return;
-  const newTitle=prompt("Tên bài hát mới:",t.title);
-  const newArtist=prompt("Nghệ sĩ mới:",t.artist);
-  if(newTitle&&newArtist){
-    t.title=newTitle;
-    t.artist=newArtist;
-    renderAdminTracks();
-  }
-}
-
-function deleteTrack(id){
-  if(confirm("Xoá bài hát này?")){
-    const idx=seed.tracks.findIndex(t=>t.id===id);
-    if(idx>-1) seed.tracks.splice(idx,1);
-    renderAdminTracks();
-  }
-}
-
-function init(){ renderTracks(); }
-window.onload=init;
-</script>
+    <footer>
+      <p>Nếu bạn muốn tôi viết thêm nội dung mô tả chi tiết, mẫu test case dạng bảng CSV/Excel, hoặc xuất bản bản in PDF — hãy cho tôi biết và tôi sẽ cập nhật trực tiếp trong file này.</p>
+    </footer>
+  </div>
 </body>
 </html>

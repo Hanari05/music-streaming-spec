@@ -3,7 +3,7 @@
 Một prototype web app mô phỏng nền tảng nghe nhạc trực tuyến.  
 Dự án được xây dựng bằng **HTML + CSS + JavaScript (thuần)**, nhằm mục đích demo chức năng cơ bản của ứng dụng nghe nhạc — bao gồm **nghe nhạc, xem nghệ sĩ, album, quản lý playlist và admin CRUD**.
 
-[Link report](https://hanari05.github.io/music-streaming-spec/)
+[Link report báo cáo giữa kì](https://hanari05.github.io/music-streaming-spec/)
 ---
 
 ## 🎯 Mục tiêu dự án

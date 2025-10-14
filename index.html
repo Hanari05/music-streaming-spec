@@ -1,191 +1,91 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Báo cáo - 7 Yêu cầu Bài Kiểm Tra Giữa Kì</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Báo cáo giữa kỳ – Ứng dụng web phát nhạc</title>
   <style>
-    :root{ --bg:#fafafa; --card:#ffffff; --muted:#6b7280; --accent:#2563eb; --gap:18px; }
-    body{ font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#111827; margin:0; padding:32px; }
-    .container{ max-width:980px; margin:0 auto; }
-    header{ display:flex; align-items:center; gap:16px; margin-bottom:22px; }
-    header h1{ font-size:20px; margin:0; }
-    header p{ margin:0; color:var(--muted); font-size:13px; }
-    .card{ background:var(--card); border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.06); padding:20px; margin-bottom:var(--gap); }
-    .section-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    h2{ margin:0 0 8px 0; font-size:16px; }
-    p.small{ color:var(--muted); margin:0 0 12px 0; font-size:13px; }
-    .placeholder{ border:2px dashed #e6e9ef; border-radius:8px; padding:18px; text-align:center; color:var(--muted); background:linear-gradient(180deg, rgba(250,250,252,1), rgba(255,255,255,0.6)); }
-    .placeholder img{ max-width:100%; height:auto; display:block; margin:6px auto; }
-    .meta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
-    a.btn{ display:inline-block; padding:8px 12px; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-size:13px; }
-    a.link{ color:var(--accent); text-decoration:underline; font-size:13px; }
-    ul{ margin:8px 0 0 20px; }
-    code{ background:#0f172a08; padding:2px 6px; border-radius:6px; }
-    footer{ margin-top:26px; color:var(--muted); font-size:13px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    a {
+      color: #0078d4;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>Báo cáo: 7 Yêu cầu - Bài kiểm tra giữa kì</h1>
-        <p>File index.html chứa cấu trúc báo cáo, chừa chỗ để bạn thêm ảnh, link HTML prototype và video demo.</p>
-      </div>
-    </header>
+  <h1>📘 Báo cáo giữa kỳ – Ứng dụng Web Phát Nhạc</h1>
 
-    <!-- 1. Use Case -->
-    <section class="card" id="usecase">
-      <div class="section-title">
-        <h2>1. Thiết kế sơ đồ Use Case</h2>
-        <span class="small">Yêu cầu: ảnh + mô tả</span>
-      </div>
-      <p class="small">Mô tả: Trình bày các tác nhân (actor) và các ca sử dụng (use cases). Đính kèm hình ảnh sơ đồ và phần mô tả chi tiết cho từng use case.</p>
-      <div class="placeholder">
-        <img id="usecase-img" src="/3.1 Thiết kế sơ đồ Use Case/music web app-UC.drawio.png" alt="Use Case diagram" />
-      <h3 style="margin-top:12px;">Mô tả chi tiết (ví dụ)</h3>
-      <p class="small">- Actor: <strong>Người dùng</strong> — Mô tả: Người dùng có thể đăng nhập, tìm kiếm, phát nhạc.<br>- Use Case: <strong>Đăng nhập</strong> — Mô tả: Người dùng nhập email và mật khẩu, hệ thống xác thực và chuyển đến trang chính.</p>
+  <section>
+    <h2>1️⃣ Thiết kế sơ đồ Use Case</h2>
+    <p><strong>Yêu cầu:</strong> Ảnh sơ đồ Use Case và phần mô tả chức năng tổng quát.</p>
+    <img src="1. music web app-UC.drawio.png" alt="Sơ đồ Use Case">
+  </section>
 
-      <div class="meta">
-        <a class="btn" href="#usecase">Chỉnh sửa ảnh</a>
-        <a class="link" href="#">Thêm mô tả chi tiết (tệp .md hoặc .pdf)</a>
-      </div>
-    </section>
+  <section>
+    <h2>2️⃣ Thiết kế Sequence Diagram</h2>
+    <p><strong>Yêu cầu:</strong> Ảnh mô tả luồng hoạt động giữa các thành phần.</p>
+    <p><strong>Chức năng 1 – Phát nhạc một bài:</strong></p>
+    <img src="2.1. music web app-SD_01.drawio.png" alt="Sequence Diagram – Phát nhạc">
+    <p><strong>Chức năng 2 – Thêm bài vào Playlist:</strong></p>
+    <img src="music web app-SD_02.drawio.png" alt="Sequence Diagram – Thêm bài vào Playlist">
+  </section>
 
-    <!-- 2. Sequence Diagram -->
-    <section class="card" id="sequence">
-      <div class="section-title">
-        <h2>2. Thiết kế Sequence Diagram</h2>
-        <span class="small">Yêu cầu: ảnh</span>
-      </div>
-      <p class="small">Mô tả: Minh hoạ luồng thông điệp giữa các đối tượng trong một kịch bản chức năng (ví dụ: Đăng nhập, Thêm bài hát vào playlist).</p>
-      <div class="placeholder">
-        <img id="sequence-img" src="/3.2 Thiết kế Sequence Diagram/music web app-SD_01.drawio.png" alt="Sequence diagram - Phát nhạc một bài" />
-      </div>
-      <div class="placeholder">
-        <img id="sequence-img" src="/3.2 Thiết kế Sequence Diagram/music web app-SD_02.drawio.png" alt="Sequence diagram - Thêm bài vào playlist" />
-      </div>
-      <div class="meta">
-        <a class="link" href="#">Tải ảnh Sequence Diagram</a>
-      </div>
-       <div class="meta">
-        <a class="link" href="#">Tải ảnh Sequence Diagram</a>
-      </div>
-    </section>
+  <section>
+    <h2>3️⃣ Thiết kế sơ đồ Thực thể – Kết hợp (ER)</h2>
+    <p><strong>Yêu cầu:</strong> Ảnh sơ đồ ER mô tả quan hệ giữa các thực thể dữ liệu.</p>
+    <img src="3. music web app-ER.drawio.png" alt="Sơ đồ ER">
+  </section>
 
-    <!-- 3. ER -->
-    <section class="card" id="er">
-      <div class="section-title">
-        <h2>3. Thiết kế sơ đồ Thực thể–Kết hợp (ER)</h2>
-        <span class="small">Yêu cầu: ảnh</span>
-      </div>
-      <p class="small">Mô tả: Vẽ các thực thể, thuộc tính và quan hệ. Sử dụng sơ đồ ER truyền thống để thể hiện ràng buộc chính/ngoại khoá (nếu cần).</p>
-      <div class="placeholder">
-        <img id="er-img" src="/3.3 Thiết kế sơ đồ Thực thể–Kết hợp (ER)/music web app-ER.drawio.png" alt="ER diagram" />
-      </div>
-      <div class="meta">
-        <a class="link" href="#">Tải ảnh ER</a>
-      </div>
-    </section>
+  <section>
+    <h2>4️⃣ Thiết kế sơ đồ CSDL (ERD – Logical/Physical)</h2>
+    <p><strong>Yêu cầu:</strong> Ảnh sơ đồ cơ sở dữ liệu dạng logic hoặc vật lý.</p>
+    <img src="4. music web app-ERD.drawio.png" alt="Sơ đồ ERD">
+  </section>
 
-    <!-- 4. ERD (Logical/Physical) -->
-    <section class="card" id="erd">
-      <div class="section-title">
-        <h2>4. Thiết kế sơ đồ CSDL (ERD — Logical / Physical)</h2>
-        <span class="small">Yêu cầu: ảnh</span>
-      </div>
-      <p class="small">Mô tả: Cung cấp ERD dạng Logical (mô hình lôgic) và Physical (bảng, khoá, kiểu dữ liệu). Nếu có, đính kèm SQL DDL (CREATE TABLE).</p>
-      <div class="placeholder">
-        <img id="erd-img" src="/3.4 Thiết kế sơ đồ CSDL (ERD – LogicalPhysical)/music web app-ERD.drawio.png" alt="ERD diagram" />
-      </div>
+  <section>
+    <h2>5️⃣ Thiết kế giao diện Prototype (Wireframe / Mockup)</h2>
+    <p><strong>Yêu cầu:</strong> Chèn liên kết ảnh hoặc file HTML prototype.</p>
+    <p><em>Liên kết ảnh / file HTML sẽ được thêm tại đây:</em></p>
+    <a href="#">(Thêm link prototype tại đây)</a>
+  </section>
 
-      <h3 style="margin-top:12px;">Ví dụ: SQL DDL</h3>
-      <pre style="background:#f8fafc;padding:10px;border-radius:8px;overflow:auto;">-- Thí dụ bảng Users
-CREATE TABLE Users (
-  id INT PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-</pre>
-    </section>
+  <section>
+    <h2>6️⃣ Quy tắc nghiệp vụ & Test Case</h2>
+    <p><strong>Yêu cầu:</strong> Ảnh mô tả quy tắc nghiệp vụ, test case, và API tương ứng.</p>
+    <h3>Quy tắc nghiệp vụ</h3>
+    <img src="6.1. music web app-BR.drawio.png" alt="Quy tắc nghiệp vụ">
+    <h3>Test Case</h3>
+    <img src="6.2. music web app-TC.drawio.png" alt="Test Case">
+    <h3>API</h3>
+    <img src="6.3. music web app-API.drawio.png" alt="API Diagram">
+  </section>
 
-    <!-- 5. Prototype -->
-    <section class="card" id="prototype">
-      <div class="section-title">
-        <h2>5. Thiết kế giao diện Prototype (wireframe / mockup)</h2>
-        <span class="small">Yêu cầu: chừa link ảnh & file HTML</span>
-      </div>
-      <p class="small">Mô tả: Đặt link tới hình wireframe/mockup và link tới file HTML prototype (nếu có). Hệ thống chừa sẵn chỗ để bạn dán link.</p>
+  <section>
+    <h2>7️⃣ Demo mô phỏng</h2>
+    <p><strong>Yêu cầu:</strong> Liên kết đến video demo và HTML prototype hoạt động.</p>
+    <a href="#">(Thêm link video demo tại đây)</a><br>
+    <a href="#">(Thêm link file HTML prototype tại đây)</a>
+  </section>
 
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-        <div style="flex:1;min-width:220px;">
-          <label style="font-size:13px;color:var(--muted);">Link ảnh wireframe:</label>
-          <div class="placeholder" style="padding:12px;">
-            <p id="wireframe-link">LINK_TO_WIREFRAME_IMAGE_OR_THUMBNAIL</p>
-            <p class="small">(Thay bằng URL ảnh)</p>
-          </div>
-        </div>
-        <div style="flex:1;min-width:220px;">
-          <label style="font-size:13px;color:var(--muted);">Link file HTML prototype:</label>
-          <div class="placeholder" style="padding:12px;">
-            <p id="prototype-link">LINK_TO_PROTOTYPE_HTML</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="meta">
-        <a class="btn" href="#prototype">Thêm link</a>
-      </div>
-    </section>
-
-    <!-- 6. Business rules & Test cases -->
-    <section class="card" id="rules-tests">
-      <div class="section-title">
-        <h2>6. Quy tắc nghiệp vụ & Test case</h2>
-        <span class="small">Yêu cầu: chừa link ảnh</span>
-      </div>
-      <p class="small">Mô tả: Liệt kê quy tắc nghiệp vụ quan trọng (business rules) và các test case kèm theo bước thực hiện, dữ liệu đầu vào và kết quả mong đợi. Chừa chỗ để bạn đính kèm ảnh minh hoạ test (screenshot kết quả).</p>
-
-      <h3 style="margin-top:8px;">Ví dụ ngắn</h3>
-      <ul>
-        <li>BR-01: Người dùng phải đăng ký bằng email hợp lệ.</li>
-        <li>TC-01: Đăng ký thành công với email hợp lệ — Kết quả mong đợi: Tạo tài khoản và gửi email xác nhận.</li>
-      </ul>
-
-      <div class="placeholder" style="margin-top:10px;">
-        <p id="tests-screenshot">LINK_TO_TESTCASE_SCREENSHOT_OR_FOLDER</p>
-        <p class="small">(Thay bằng URL ảnh test case hoặc tệp chứa các test case chi tiết)</p>
-      </div>
-    </section>
-
-    <!-- 7. Demo simulation -->
-    <section class="card" id="demo">
-      <div class="section-title">
-        <h2>7. Demo mô phỏng</h2>
-        <span class="small">Yêu cầu: chừa link video & HTML prototype</span>
-      </div>
-      <p class="small">Mô tả: Chèn link video demo (ví dụ: YouTube/MP4) hoặc link tới prototype HTML có thể chạy trực tiếp.</p>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:220px;">
-          <label class="small">Link video demo:</label>
-          <div class="placeholder"><p id="video-link">LINK_TO_VIDEO_DEMO</p></div>
-        </div>
-        <div style="flex:1;min-width:220px;">
-          <label class="small">Link HTML prototype (chạy demo):</label>
-          <div class="placeholder"><p id="demo-proto">LINK_TO_RUNNABLE_HTML_PROTOTYPE</p></div>
-        </div>
-      </div>
-
-      <div class="meta" style="margin-top:12px;">
-        <a class="link" href="#">Hướng dẫn nén/đóng gói demo</a>
-      </div>
-    </section>
-
-    <footer>
-      <p>Nếu bạn muốn tôi viết thêm nội dung mô tả chi tiết, mẫu test case dạng bảng CSV/Excel, hoặc xuất bản bản in PDF — hãy cho tôi biết và tôi sẽ cập nhật trực tiếp trong file này.</p>
-    </footer>
-  </div>
 </body>
 </html>

@@ -7,85 +7,183 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 40px;
+      margin: 40px auto;
+      max-width: 900px;
       background: #fafafa;
       color: #333;
       line-height: 1.6;
     }
-    h1, h2 {
+
+    h1, h2, h3 {
       color: #2c3e50;
     }
-    section {
+
+    /* Mục lục */
+    nav {
       background: #fff;
       padding: 20px;
-      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    nav h2 {
+      margin-top: 0;
+      font-size: 1.4em;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 6px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding-left: 10px;
+    }
+
+    nav li {
+      margin: 6px 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0078d4;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      background: #fff;
+      padding: 25px;
+      margin-bottom: 35px;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-top: 10px;
+
+    section h2 {
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 6px;
     }
+
+    section h3 {
+      margin-top: 18px;
+      color: #444;
+      font-size: 1.05em;
+    }
+
+    img {
+      display: block;
+      max-width: 90%;
+      height: auto;
+      border-radius: 6px;
+      margin: 15px auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
     a {
       color: #0078d4;
+      word-break: break-word;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      margin-top: 50px;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
   <h1>📘 Báo cáo giữa kỳ – Ứng dụng Web Phát Nhạc</h1>
 
-  <section>
+  <!-- 🧭 MỤC LỤC -->
+  <nav>
+    <h2>📑 Mục lục</h2>
+    <ul>
+      <li><a href="#usecase">1️⃣ Thiết kế sơ đồ Use Case</a></li>
+      <li><a href="#sequence">2️⃣ Thiết kế Sequence Diagram</a>
+        <ul>
+          <li><a href="#seq1">Chức năng 1 – Phát nhạc</a></li>
+          <li><a href="#seq2">Chức năng 2 – Thêm bài vào Playlist</a></li>
+        </ul>
+      </li>
+      <li><a href="#er">3️⃣ Thiết kế sơ đồ Thực thể – Kết hợp (ER)</a></li>
+      <li><a href="#erd">4️⃣ Thiết kế sơ đồ CSDL (ERD – Logical/Physical)</a></li>
+      <li><a href="#prototype">5️⃣ Thiết kế giao diện Prototype (Wireframe / Mockup)</a></li>
+      <li><a href="#br">6️⃣ Quy tắc nghiệp vụ & Test Case</a>
+        <ul>
+          <li><a href="#rules">Quy tắc nghiệp vụ</a></li>
+          <li><a href="#testcase">Test Case</a></li>
+          <li><a href="#api">API</a></li>
+        </ul>
+      </li>
+      <li><a href="#demo">7️⃣ Demo mô phỏng</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🌐 CÁC MỤC CHÍNH -->
+  <section id="usecase">
     <h2>1️⃣ Thiết kế sơ đồ Use Case</h2>
     <p><strong>Yêu cầu:</strong> Ảnh sơ đồ Use Case và phần mô tả chức năng tổng quát.</p>
     <img src="3_1/USECASE.png" alt="Use Case Diagram">
+	
+	<p><strong>Mô tả chức năng sơ đồ:</strong></p>
+	<a href="#">F:\STUDY\C_C++\NMCNPM_MySQL\Midterm Test\Music-Streaming-spec\3_1\Description-UC.txt</a>
   </section>
 
-  <section>
+  <section id="sequence">
     <h2>2️⃣ Thiết kế Sequence Diagram</h2>
     <p><strong>Yêu cầu:</strong> Ảnh mô tả luồng hoạt động giữa các thành phần.</p>
-    <p><strong>Chức năng 1 – Phát nhạc một bài:</strong></p>
+
+    <h3 id="seq1">Chức năng 1 – Phát nhạc một bài</h3>
     <img src="3_2/SEQUENCE1.png" alt="Sequence Diagram – Phát nhạc">
-    <p><strong>Chức năng 2 – Thêm bài vào Playlist:</strong></p>
+
+    <h3 id="seq2">Chức năng 2 – Thêm bài vào Playlist</h3>
     <img src="3_2/SEQUENCE2.png" alt="Sequence Diagram – Thêm bài vào Playlist">
   </section>
 
-  <section>
+  <section id="er">
     <h2>3️⃣ Thiết kế sơ đồ Thực thể – Kết hợp (ER)</h2>
     <p><strong>Yêu cầu:</strong> Ảnh sơ đồ ER mô tả quan hệ giữa các thực thể dữ liệu.</p>
     <img src="3_3/ER.png" alt="ER Diagram">
   </section>
 
-  <section>
+  <section id="erd">
     <h2>4️⃣ Thiết kế sơ đồ CSDL (ERD – Logical/Physical)</h2>
     <p><strong>Yêu cầu:</strong> Ảnh sơ đồ cơ sở dữ liệu dạng logic hoặc vật lý.</p>
     <img src="3_4/ERD.png" alt="ERD Diagram">
   </section>
 
-  <section>
+  <section id="prototype">
     <h2>5️⃣ Thiết kế giao diện Prototype (Wireframe / Mockup)</h2>
     <p><strong>Yêu cầu:</strong> Chèn liên kết ảnh hoặc file HTML prototype.</p>
     <p><em>Liên kết ảnh / file HTML sẽ được thêm tại đây:</em></p>
     <a href="#">(Thêm link prototype tại đây)</a>
   </section>
 
-  <section>
+  <section id="br">
     <h2>6️⃣ Quy tắc nghiệp vụ & Test Case</h2>
     <p><strong>Yêu cầu:</strong> Ảnh mô tả quy tắc nghiệp vụ, test case, và API tương ứng.</p>
-    <h3>Quy tắc nghiệp vụ</h3>
-    <img src="3_6/BR.png" alt="Quy tac nghiep vu">
-    <h3>Test Case</h3>
+
+    <h3 id="rules">Quy tắc nghiệp vụ</h3>
+    <img src="3_6/BR.png" alt="Quy tắc nghiệp vụ">
+
+    <h3 id="testcase">Test Case</h3>
     <img src="3_6/TESTCASE.png" alt="Test Case Diagram">
-    <h3>API</h3>
+
+    <h3 id="api">API</h3>
     <img src="3_6/API.png" alt="API Diagram">
   </section>
 
-  <section>
+  <section id="demo">
     <h2>7️⃣ Demo mô phỏng</h2>
     <p><strong>Yêu cầu:</strong> Liên kết đến video demo và HTML prototype hoạt động.</p>
     <a href="#">(Thêm link video demo tại đây)</a><br>
-    <a href="#">(Thêm link file HTML prototype tại đây)</a>
+    <a href="#">(https://hanari05.github.io/music-streaming-spec/3_7/demo.html)</a>
   </section>
 
+  <footer>
+    <p>© 2025 Báo cáo giữa kỳ – Ứng dụng Web Phát Nhạc | Người thực hiện: [Nguyễn Ngọc Gia Hân]</p>
+  </footer>
 </body>
 </html>

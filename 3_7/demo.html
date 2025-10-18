@@ -5,36 +5,57 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>🌸 Pastel Music Demo</title>
 <style>
-/* Giữ nguyên toàn bộ style cũ */
+/* --- Style chính (giữ phong cách pastel) --- */
 :root {
   --pink: #fcdce1;
   --white: #fff;
   --lav: #f6ecf7;
   --mint: #e7f5f2;
   --text: #444;
+  --card-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
-body { font-family: "Poppins", sans-serif; margin: 0; background: var(--lav); color: var(--text);}
-header { background: var(--pink); padding: 1em; text-align: center; font-weight: 600; font-size: 1.4em; color: #444; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-nav { display: flex; justify-content: center; background: var(--white); gap: 1em; padding: 0.8em; flex-wrap: wrap;}
-nav button { border: none; background: var(--mint); padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; transition: 0.2s;}
-nav button:hover { background: var(--pink);}
-main { padding: 1.2em; max-width: 900px; margin: auto;}
+*{box-sizing:border-box}
+body { font-family: "Poppins", sans-serif; margin: 0; background: var(--lav); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+header { background: var(--pink); padding: 1.2em; text-align: center; font-weight: 600; font-size: 1.4em; color: #444; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top:0; z-index: 10;}
+nav { display: flex; justify-content: center; background: var(--white); gap: 1em; padding: 0.8em; flex-wrap: wrap; position: sticky; top:64px; z-index: 9; }
+nav button { border: none; background: var(--mint); padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; transition: 0.2s; font-weight:300;}
+nav button:hover { background: var(--pink); transform: translateY(-2px); }
+main { padding: 1.2em; max-width: 900px; margin: auto; transition: padding-bottom 0.2s ease; }
 .hidden { display: none;}
-.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1em;}
-.card { background: var(--white); border-radius: 1em; padding: 1em; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; cursor: pointer;}
-.card:hover { background: var(--pink);}
-#player { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: 0.8em; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);}
-#player-info { flex: 1; padding-left: 1em;}
-#player button { background: none; border: none; font-size: 1.3em; cursor: pointer; margin: 0 0.3em;}
-#playlist-detail { background: var(--lav); padding: 1em; border-radius: 1em; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-top: 1em;}
-.track-list { list-style: none; padding: 0; margin: 0;}
-.track-list li { display: flex; justify-content: space-between; align-items: center; background: var(--white); border-radius: 0.8em; padding: 0.7em 1em; margin-bottom: 0.5em; cursor: pointer; transition: 0.2s;}
-.track-list li:hover { background: var(--mint);}
-.add-btn { background: var(--pink); border: none; padding: 0.6em 1.2em; border-radius: 1em; cursor: pointer; margin-top: 1em;}
-.add-btn:hover { background: var(--mint);}
-.admin-table { width: 100%; border-collapse: collapse;}
-.admin-table th, .admin-table td { padding: 0.6em; border-bottom: 1px solid #ccc; text-align: left;}
-.admin-table th { background: var(--mint);}
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1em; align-items:start; }
+.card { background: var(--white); border-radius: 12px; padding: 1.2em; text-align: center; box-shadow: var(--card-shadow); transition: transform .15s, background .15s; cursor: pointer; }
+.card:hover { transform: translateY(-6px); background: #fff6fb; }
+#player { position: fixed; bottom: 12px; left: 12px; right: 12px; background: var(--white); padding: 12px 16px; display:flex; align-items:center; gap: 12px; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,0.12); z-index: 999; }
+#player-left { display:flex; align-items:center; gap:12px; min-width: 0; }
+#player-info { display:flex; flex-direction:column; min-width: 0; overflow:hidden; }
+#now-title { font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#now-artist { font-size:0.86em; color:#666; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#player-controls { flex: 1; display:flex; align-items:center; gap:8px; min-width:0; }
+#player audio{ width:100%; }
+.small-btn { background:none; border:none; font-size:1.1em; cursor:pointer; padding:6px; border-radius:8px; }
+.small-btn:hover{ background:var(--mint); }
+.track-actions { margin-top:0.75em; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.add-playlist-btn { background:var(--pink); border:none; padding:1em 1em; border-radius:30px; margin-top: 1em; cursor:pointer; font-weight:200; }
+.add-playlist-btn:hover{ background:var(--mint); }
+
+#playlist-detail { background: rgba(246,236,247,0.6); padding: 1em; border-radius: 1px; box-shadow: var(--card-shadow); margin-top: 1em; }
+.track-list { list-style: none; padding: 0; margin: 0; }
+.track-list li { display: flex; justify-content: space-between; align-items: center; background: var(--white); border-radius: 0.8em; padding: 0.7em 1em; margin-bottom: 0.5em; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+.track-list li:hover { transform: translateY(-4px); background: #f3fff9; }
+
+.admin-table { width: 100%; border-collapse: collapse; margin-top: 0.6em; }
+.admin-table th, .admin-table td { padding: 0.6em; border-bottom: 1px solid #eee; text-align: left; }
+.admin-table th { background: var(--mint); }
+
+.footer-space { height: 0; } /* will be set dynamically */
+
+/* responsive tweaks */
+@media (max-width:600px){
+  nav { gap: 0.5em; padding: 0.6em; }
+  header { font-size:1.1em; }
+  .grid { grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); }
+  #player { left:8px; right:8px; bottom:8px; padding:10px; }
+}
 </style>
 </head>
 <body>
@@ -51,12 +72,12 @@ main { padding: 1.2em; max-width: 900px; margin: auto;}
   <button onclick="showView('admin')">Admin</button>
 </nav>
 
-<main>
+<main id="main-content">
   <section id="home" class="view">
     <h2>🌷 Khám phá Pastel Music</h2>
     <p>🎵 Pastel Music mang đến không gian âm nhạc nhẹ nhàng, dễ thương và đầy cảm xúc.<br><br>
-    Chào mừng đến với Prototype Web nhạc của Hân. Đây là nơi để Hân thể hiện cảm xúc và màu sắc của mình thông qua âm nhạc và thiết kế~ <br><br>
-    Hãy bắt đầu bằng cách lướt qua Tracks hoặc tìm kiếm bài hát mà bạn yêu thích nhé !</p>
+    Chào mừng đến với Prototype Web nhạc của Hân. Đây là nơi để Hân thể hiện cảm xúc và màu sắc của mình thông qua âm nhạc và thiết kế~<br><br>
+	 Hãy bắt đầu bằng cách lướt qua Tracks hoặc tìm kiếm bài hát mà bạn yêu thích nhé !</p>
   </section>
 
   <section id="tracks" class="view hidden">
@@ -66,7 +87,7 @@ main { padding: 1.2em; max-width: 900px; margin: auto;}
 
   <section id="search" class="view hidden">
     <h2>🎈 Tìm kiếm bài hát</h2>
-    <input id="searchInput" type="text" placeholder="Nhập tên bài hát..." style="padding:0.5em;width:100%;border-radius:1em;border:none;">
+    <input id="searchInput" type="text" placeholder="Nhập tên bài hát hoặc nghệ sĩ..." style="padding:0.6em;width:100%;border-radius:1em;border:none;">
     <div id="searchResult" class="grid" style="margin-top:1em;"></div>
   </section>
 
@@ -79,7 +100,7 @@ main { padding: 1.2em; max-width: 900px; margin: auto;}
       <ul id="playlist-tracks" class="track-list"></ul>
     </div>
 
-    <button class="add-btn" onclick="addPlaylist()">+ Tạo Playlist Mới</button>
+    <button class="add-btn add-playlist-btn" onclick="addPlaylist()">+ Tạo Playlist Mới</button>
   </section>
 
   <section id="artists" class="view hidden">
@@ -100,20 +121,41 @@ main { padding: 1.2em; max-width: 900px; margin: auto;}
   <section id="admin" class="view hidden">
     <h2>🎛️ Khu vực Admin (CRUD nội dung)</h2>
     <table class="admin-table">
-      <thead><tr><th>ID</th><th>Tên bài hát</th><th>Nghệ sĩ</th><th>Thao tác</th></tr></thead>
+      <thead><tr><th>ID</th><th>Tên bài hát</th><th>Nghệ sĩ</th><th>URL (music/...)</th><th>Thao tác</th></tr></thead>
       <tbody id="admin-track-body"></tbody>
     </table>
-    <button class="add-btn" onclick="addTrack()">+ Thêm bài hát</button>
+    <button class="add-btn add-playlist-btn" onclick="addTrack()">+ Thêm bài hát</button>
   </section>
+
+  <div id="footer-space" class="footer-space"></div>
 </main>
 
-<footer id="player">
-  <audio id="audio" controls style="width:100%;"></audio>
+<!-- Player cố định -->
+<footer id="player" aria-label="Player">
+  <div id="player-left">
+    <button class="small-btn" id="prevBtn" title="Trước" onclick="prevTrack()">⏮</button>
+    <button class="small-btn" id="playBtn" title="Play/Pause" onclick="togglePlay()">⏯</button>
+  </div>
+
+  <div id="player-info">
+    <div id="now-title">Không có bài đang phát</div>
+    <div id="now-artist"></div>
+  </div>
+
+  <div id="player-controls">
+    <audio id="audio" controls></audio>
+  </div>
+
+  <div>
+    <button class="small-btn" title="Dừng và xóa lịch sử" onclick="clearHistory()">🗑 Lịch sử</button>
+  </div>
 </footer>
 
 <script>
-// 🌸 DỮ LIỆU MẪU MỞ RỘNG
-const seed = {
+/* ============================
+   Dữ liệu mẫu (seed) mặc định
+   ============================ */
+const DEFAULT_SEED = {
   artists: [
     { id:1, name:"BLACKPINK" }, { id:2, name:"IU" }, { id:3, name:"YOASOBI" },
     { id:4, name:"Taylor Swift" }, { id:5, name:"Sơn Tùng M-TP" },
@@ -160,7 +202,42 @@ const seed = {
   history: []
 };
 
-// 🌸 Phần JS giữ nguyên logic cũ
+/* ================
+   Storage helpers
+   ================ */
+const STORAGE_KEY = 'pastel_music_v1';
+
+function loadSeed(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) {
+      localStorage.setItem(STORAGE_key_fallback(), JSON.stringify(DEFAULT_SEED)); // safety
+      return JSON.parse(JSON.stringify(DEFAULT_SEED));
+    }
+    return JSON.parse(raw);
+  } catch(e) {
+    console.error("Lỗi loadStorage:", e);
+    return JSON.parse(JSON.stringify(DEFAULT_SEED));
+  }
+}
+function saveSeed(data){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch(e) {
+    console.error("Lỗi saveStorage:", e);
+  }
+}
+function STORAGE_key_fallback(){ return STORAGE_KEY; }
+
+/* ================
+   Global state
+   ================ */
+let seed = loadSeed();
+let currentTrackId = null;
+
+/* ================
+   View rendering
+   ================ */
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
@@ -171,18 +248,290 @@ function showView(id){
   if(id==='admin') renderAdminTracks();
 }
 
+/* Tracks */
 function renderTracks(){
   const container=document.getElementById("track-list");
   container.innerHTML="";
   seed.tracks.forEach(t=>{
     const div=document.createElement("div");
     div.className="card";
-    div.textContent=`${t.title} - ${t.artist}`;
-    div.onclick=()=>playById(t.id);
+    // nội dung
+    div.innerHTML = `
+      <div style="font-weight:700">${escapeHtml(t.title)}</div>
+      <div style="color:#666;margin-top:6px">${escapeHtml(t.artist)}</div>
+      <div class="track-actions">
+        <button class="add-playlist-btn" onclick="event.stopPropagation(); addToPlaylistPrompt(${t.id})">+ Thêm vào playlist</button>
+        <button class="small-btn" onclick="event.stopPropagation(); playById(${t.id})">▶️ Phát</button>
+      </div>
+    `;
+    div.onclick = ()=>playById(t.id);
     container.appendChild(div);
   });
 }
 
+/* Search */
+function doSearch(){
+  const q=document.getElementById("searchInput").value.trim().toLowerCase();
+  const res=document.getElementById("searchResult");
+  res.innerHTML="";
+  if(!q) return;
+  seed.tracks.filter(t=>t.title.toLowerCase().includes(q)||t.artist.toLowerCase().includes(q))
+  .forEach(t=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML = `<div style="font-weight:700">${escapeHtml(t.title)}</div>
+      <div style="color:#666;margin-top:6px">${escapeHtml(t.artist)}</div>
+      <div class="track-actions">
+        <button class="add-playlist-btn" onclick="event.stopPropagation(); addToPlaylistPrompt(${t.id})">+ Playlist</button>
+        <button class="small-btn" onclick="event.stopPropagation(); playById(${t.id})">▶️ Play</button>
+      </div>`;
+    div.onclick = ()=>playById(t.id);
+    res.appendChild(div);
+  });
+}
+document.getElementById("searchInput").addEventListener("input", doSearch);
+
+/* Playlists */
+function renderPlaylists(){
+  const container=document.getElementById("playlist-list");
+  container.innerHTML="";
+  seed.playlists.forEach(pl=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML = `<h3 style="margin:0">${escapeHtml(pl.name)}</h3><p style="color:#666;margin-top:8px">${pl.tracks.length} bài hát</p>`;
+    div.onclick = ()=>showPlaylistDetail(pl.id);
+    container.appendChild(div);
+  });
+}
+
+function showPlaylistDetail(id){
+  const playlist=seed.playlists.find(p=>p.id===id);
+  if(!playlist) return;
+  document.getElementById("playlist-title").textContent = playlist.name;
+  const list=document.getElementById("playlist-tracks");
+  list.innerHTML="";
+  playlist.tracks.forEach(tid=>{
+    const t = seed.tracks.find(tr=>tr.id===tid);
+    if(t){
+      const li = document.createElement("li");
+      li.innerHTML = `<span style="min-width:0;"><strong>${escapeHtml(t.title)}</strong> - <em style="color:#666">${escapeHtml(t.artist)}</em></span>
+        <span style="display:flex;gap:8px">
+          <button class="small-btn" onclick="event.stopPropagation(); playById(${t.id})">▶️</button>
+          <button class="small-btn" onclick="event.stopPropagation(); removeFromPlaylist(${playlist.id}, ${t.id})">➖</button>
+        </span>`;
+      li.onclick = ()=>playById(t.id);
+      list.appendChild(li);
+    }
+  });
+  document.getElementById("playlist-detail").classList.remove("hidden");
+}
+
+/* Remove from playlist */
+function removeFromPlaylist(playlistId, trackId){
+  const pl = seed.playlists.find(p=>p.id===playlistId);
+  if(!pl) return;
+  const idx = pl.tracks.indexOf(trackId);
+  if(idx>-1){
+    pl.tracks.splice(idx,1);
+    saveSeed(seed);
+    renderPlaylists();
+    showPlaylistDetail(playlistId);
+  }
+}
+
+/* Add playlist */
+function addPlaylist(){
+  const name = prompt("Nhập tên playlist mới:");
+  if(!name) return;
+  const newId = seed.playlists.length ? Math.max(...seed.playlists.map(p=>p.id))+1 : 1;
+  seed.playlists.push({id:newId, name: name.trim(), tracks: []});
+  saveSeed(seed);
+  renderPlaylists();
+  alert("Tạo playlist thành công!");
+}
+
+/* Add to playlist prompt */
+function addToPlaylistPrompt(trackId){
+  if(!seed.playlists.length){
+    if(confirm("Chưa có playlist nào. Tạo mới?")) { addPlaylist(); }
+    return;
+  }
+  // Build prompt string with numbered options
+  let promptTxt = "Chọn playlist (nhập số):\n";
+  seed.playlists.forEach((p,i)=> promptTxt += `${i+1}. ${p.name} (${p.tracks.length} bài)\n`);
+  promptTxt += `${seed.playlists.length+1}. Tạo playlist mới\n\nNhập số:`;
+  const ans = prompt(promptTxt);
+  if(!ans) return;
+  const n = parseInt(ans);
+  if(isNaN(n)) return alert("Giá trị không hợp lệ");
+  if(n === seed.playlists.length+1){
+    addPlaylist();
+    return;
+  }
+  const target = seed.playlists[n-1];
+  if(!target) return alert("Không tìm thấy playlist");
+  if(!target.tracks.includes(trackId)) target.tracks.push(trackId);
+  saveSeed(seed);
+  alert(`Đã thêm vào "${target.name}"`);
+  // refresh playlist view counts if visible
+  if(!document.getElementById("playlist-list").classList.contains("hidden")) renderPlaylists();
+}
+
+/* History */
+function renderHistory(){
+  const list=document.getElementById("history-list");
+  list.innerHTML="";
+  seed.history.forEach(h=>{
+    const li = document.createElement("li");
+    li.textContent = h;
+    list.appendChild(li);
+  });
+}
+function clearHistory(){
+  if(confirm("Xóa toàn bộ lịch sử nghe?")){
+    seed.history = [];
+    saveSeed(seed);
+    renderHistory();
+  }
+}
+
+/* Admin (CRUD) */
+function renderAdminTracks(){
+  const tbody=document.getElementById("admin-track-body");
+  tbody.innerHTML="";
+  seed.tracks.forEach(t=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${t.id}</td>
+      <td>${escapeHtml(t.title)}</td>
+      <td>${escapeHtml(t.artist)}</td>
+      <td style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(t.url||'')}</td>
+      <td>
+        <button onclick="editTrack(${t.id})">✏️</button>
+        <button onclick="deleteTrack(${t.id})">🗑️</button>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function addTrack(){
+  const title = prompt("Tên bài hát:");
+  if(!title) return;
+  const artist = prompt("Nghệ sĩ:");
+  if(!artist) return;
+  const url = prompt("Đường dẫn file (ví dụ music/file.mp3). Để trống nếu chưa có:");
+  const newId = seed.tracks.length ? Math.max(...seed.tracks.map(t=>t.id))+1 : 1;
+  seed.tracks.push({id:newId, title:title.trim(), artist:artist.trim(), url: url ? url.trim() : ""});
+  saveSeed(seed);
+  renderAdminTracks();
+  renderTracks();
+  alert("Đã thêm bài hát mới.");
+}
+
+function editTrack(id){
+  const t = seed.tracks.find(x=>x.id===id);
+  if(!t) return;
+  const newTitle = prompt("Tên bài mới:", t.title);
+  const newArtist = prompt("Nghệ sĩ mới:", t.artist);
+  const newUrl = prompt("URL file (music/...):", t.url || "");
+  if(newTitle) t.title = newTitle.trim();
+  if(newArtist) t.artist = newArtist.trim();
+  t.url = newUrl ? newUrl.trim() : "";
+  saveSeed(seed);
+  renderAdminTracks();
+  renderTracks();
+}
+
+function deleteTrack(id){
+  if(!confirm("Xóa bài hát này?")) return;
+  const idx = seed.tracks.findIndex(t=>t.id===id);
+  if(idx>-1) seed.tracks.splice(idx,1);
+  // remove from playlists too
+  seed.playlists.forEach(pl => {
+    const i = pl.tracks.indexOf(id);
+    if(i>-1) pl.tracks.splice(i,1);
+  });
+  saveSeed(seed);
+  renderAdminTracks();
+  renderTracks();
+}
+
+/* ================
+   Playback controls
+   ================ */
+const audioEl = document.getElementById("audio");
+const nowTitleEl = document.getElementById("now-title");
+const nowArtistEl = document.getElementById("now-artist");
+const playBtn = document.getElementById("playBtn");
+
+function playById(id){
+  const track = seed.tracks.find(t=>t.id===id);
+  if(!track){
+    alert("Không tìm thấy bài hát.");
+    return;
+  }
+  if(!track.url){
+    alert("Bài này chưa có file (URL trống). Bạn có thể thêm URL ở phần Admin.");
+    return;
+  }
+  currentTrackId = id;
+  audioEl.src = track.url;
+  audioEl.play().catch(err=>{
+    console.warn("Lỗi phát:", err);
+    alert("Không thể phát file (kiểm tra đường dẫn hoặc cross-origin nếu chạy từ server).");
+  });
+  // update now playing display
+  nowTitleEl.textContent = track.title;
+  nowArtistEl.textContent = track.artist;
+  updatePlayBtn(true);
+  // update history
+  const label = `${track.title} - ${track.artist}`;
+  seed.history.unshift(label);
+  // keep only 30 records max
+  if(seed.history.length > 30) seed.history.length = 30;
+  saveSeed(seed);
+  renderHistory();
+}
+
+function togglePlay(){
+  if(audioEl.paused){
+    audioEl.play();
+  } else {
+    audioEl.pause();
+  }
+}
+function updatePlayBtn(isPlaying){
+  playBtn.textContent = isPlaying ? "⏸" : "⏯";
+}
+audioEl.addEventListener('play', ()=> updatePlayBtn(true));
+audioEl.addEventListener('pause', ()=> updatePlayBtn(false));
+audioEl.addEventListener('ended', ()=> {
+  updatePlayBtn(false);
+  // try next in playlist: simple behavior = stop
+});
+
+/* Prev/Next (basic prev: previous history) */
+function prevTrack(){
+  if(!seed.history.length) return;
+  // tìm track id của mục lịch sử thứ 2 (vì lịch sử[0] là hiện tại)
+  const curLabel = seed.history[0];
+  const idx = seed.history.findIndex(h=>h===curLabel);
+  if(idx>0){
+    // not very robust: find last played different from current
+    const prevLabel = seed.history[1];
+    const track = seed.tracks.find(t=>`${t.title} - ${t.artist}` === prevLabel);
+    if(track) playById(track.id);
+  } else {
+    alert("Không có bài trước trong lịch sử.");
+  }
+}
+
+/* Escape HTML helper */
+function escapeHtml(str){
+  if(!str) return '';
+  return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+}
+
+/* Render artists/albums */
 function renderArtists(){
   const list=document.getElementById("artist-list");
   list.innerHTML="";
@@ -193,7 +542,6 @@ function renderArtists(){
     list.appendChild(div);
   });
 }
-
 function renderAlbums(){
   const list=document.getElementById("album-list");
   list.innerHTML="";
@@ -205,124 +553,60 @@ function renderAlbums(){
   });
 }
 
-function renderPlaylists(){
-  const container=document.getElementById("playlist-list");
-  container.innerHTML="";
-  seed.playlists.forEach(pl=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<h3>${pl.name}</h3><p>${pl.tracks.length} bài hát</p>`;
-    div.onclick=()=>showPlaylistDetail(pl.id);
-    container.appendChild(div);
-  });
+/* Utility: ensure main padding-bottom equals player height + margin
+   -> Prevent player from covering page content */
+function adjustMainPaddingForPlayer(){
+  const main = document.getElementById("main-content");
+  const player = document.getElementById("player");
+  // compute height including margins
+  const rect = player.getBoundingClientRect();
+  const height = rect.height + 20; // extra margin
+  main.style.paddingBottom = height + "px";
+  // also set footer-space for older browsers
+  const footerSpace = document.getElementById("footer-space");
+  if(footerSpace) footerSpace.style.height = (height - 12) + "px";
 }
 
-function showPlaylistDetail(id){
-  const playlist=seed.playlists.find(p=>p.id===id);
-  if(!playlist) return;
-  document.getElementById("playlist-title").textContent=playlist.name;
-  const list=document.getElementById("playlist-tracks");
-  list.innerHTML="";
-  playlist.tracks.forEach(tid=>{
-    const t=seed.tracks.find(tr=>tr.id===tid);
-    if(t){
-      const li=document.createElement("li");
-      li.innerHTML=`<span>${t.title} - <em>${t.artist}</em></span><button>▶️</button>`;
-      li.onclick=()=>playById(t.id);
-      li.querySelector("button").onclick=e=>{e.stopPropagation();playById(t.id);};
-      list.appendChild(li);
-    }
-  });
-  document.getElementById("playlist-detail").classList.remove("hidden");
-}
-
-function renderHistory(){
-  const list=document.getElementById("history-list");
-  list.innerHTML="";
-  seed.history.forEach(h=>{
-    const li=document.createElement("li");
-    li.textContent=h;
-    list.appendChild(li);
-  });
-}
-
-function playById(id){
-  const track=seed.tracks.find(t=>t.id===id);
-  if(track){
-    const audio=document.getElementById("audio");
-    audio.src=track.url;
-    audio.play();
-    seed.history.unshift(`${track.title} - ${track.artist}`);
-    if(seed.history.length>10) seed.history.pop();
+/* On load: render initial view and adjust padding */
+function init(){
+  // If localStorage empty, initialize
+  if(!localStorage.getItem(STORAGE_KEY)){
+    saveSeed(seed);
+  } else {
+    seed = loadSeed();
   }
-}
 
-function addPlaylist(){
-  const name=prompt("Nhập tên playlist:");
-  if(!name) return;
-  const newId=Math.max(...seed.playlists.map(p=>p.id))+1;
-  seed.playlists.push({id:newId,name,tracks:[]});
+  renderTracks();
+  renderArtists();
+  renderAlbums();
   renderPlaylists();
-}
-
-function doSearch(){
-  const q=document.getElementById("searchInput").value.toLowerCase();
-  const res=document.getElementById("searchResult");
-  res.innerHTML="";
-  seed.tracks.filter(t=>t.title.toLowerCase().includes(q)||t.artist.toLowerCase().includes(q))
-  .forEach(t=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.textContent=`${t.title} - ${t.artist}`;
-    div.onclick=()=>playById(t.id);
-    res.appendChild(div);
-  });
-}
-document.getElementById("searchInput").addEventListener("input",doSearch);
-
-function renderAdminTracks(){
-  const tbody=document.getElementById("admin-track-body");
-  tbody.innerHTML="";
-  seed.tracks.forEach(t=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${t.id}</td><td>${t.title}</td><td>${t.artist}</td>
-    <td><button onclick="editTrack(${t.id})">✏️</button>
-    <button onclick="deleteTrack(${t.id})">🗑️</button></td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-function addTrack(){
-  const title=prompt("Tên bài hát:");
-  const artist=prompt("Nghệ sĩ:");
-  if(!title||!artist) return;
-  const newId=Math.max(...seed.tracks.map(t=>t.id))+1;
-  seed.tracks.push({id:newId,title,artist,url:""});
   renderAdminTracks();
+  renderHistory();
+
+  // restore last playing track (optional)
+  // keep currentTrackId null until user plays
+
+  // adjust padding now and on resize / mutation
+  adjustMainPaddingForPlayer();
+  window.addEventListener('resize', adjustMainPaddingForPlayer);
+  // also observe player size changes (in case controls appear)
+  const ro = new ResizeObserver(adjustMainPaddingForPlayer);
+  ro.observe(document.getElementById("player"));
+
+  // default to home
+  showView('home'); 
 }
 
-function editTrack(id){
-  const t=seed.tracks.find(x=>x.id===id);
-  if(!t) return;
-  const newTitle=prompt("Tên bài hát mới:",t.title);
-  const newArtist=prompt("Nghệ sĩ mới:",t.artist);
-  if(newTitle&&newArtist){
-    t.title=newTitle;
-    t.artist=newArtist;
-    renderAdminTracks();
-  }
-}
+/* Save on beforeunload just in case */
+window.addEventListener('beforeunload', ()=> saveSeed(seed));
 
-function deleteTrack(id){
-  if(confirm("Xoá bài hát này?")){
-    const idx=seed.tracks.findIndex(t=>t.id===id);
-    if(idx>-1) seed.tracks.splice(idx,1);
-    renderAdminTracks();
-  }
-}
+/* Start */
+window.onload = init;
 
-function init(){ renderTracks(); }
-window.onload=init;
+/* Small helper: add event to play when pressing Enter in search input */
+document.getElementById("searchInput").addEventListener("keydown", function(e){
+  if(e.key === "Enter") doSearch();
+});
 </script>
 </body>
 </html>
